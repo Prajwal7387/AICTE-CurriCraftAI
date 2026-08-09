@@ -194,10 +194,12 @@ export const DashboardPage: React.FC = () => {
           <div className="h-56">
             <ResponsiveContainer width="100%" height="100%">
               <BarChart data={stats.adoptionStats}>
-                <XAxis dataKey="state" stroke="#64748b" fontSize={11} />
-                <YAxis stroke="#64748b" fontSize={11} />
+                <XAxis dataKey="state" stroke="#94a3b8" fontSize={11} />
+                <YAxis stroke="#94a3b8" fontSize={11} />
                 <Tooltip
-                  contentStyle={{ backgroundColor: '#0f172a', borderColor: '#334155', borderRadius: '8px', color: '#fff' }}
+                  contentStyle={{ backgroundColor: '#020617', borderColor: '#334155', borderRadius: '10px', color: '#ffffff' }}
+                  itemStyle={{ color: '#38bdf8', fontWeight: 'bold' }}
+                  labelStyle={{ color: '#f8fafc', fontWeight: 'bold' }}
                 />
                 <Bar dataKey="adoptedCurricula" fill="#0284c7" radius={[6, 6, 0, 0]} />
               </BarChart>
@@ -227,7 +229,11 @@ export const DashboardPage: React.FC = () => {
                     <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
                   ))}
                 </Pie>
-                <Tooltip contentStyle={{ backgroundColor: '#0f172a', borderColor: '#334155', borderRadius: '8px' }} />
+                <Tooltip
+                  contentStyle={{ backgroundColor: '#020617', borderColor: '#334155', borderRadius: '10px', color: '#ffffff' }}
+                  itemStyle={{ color: '#38bdf8', fontWeight: 'bold' }}
+                  labelStyle={{ color: '#f8fafc', fontWeight: 'bold' }}
+                />
               </PieChart>
             </ResponsiveContainer>
           </div>

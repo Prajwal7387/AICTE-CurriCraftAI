@@ -32,11 +32,11 @@ const complianceTrend = [
 ];
 
 const creditDistribution = [
-  { category: 'Professional Core (PCC)', percentage: 40 },
-  { category: 'Basic Sciences (BSC)', percentage: 18 },
-  { category: 'Humanities & UHV (HSMC)', percentage: 12 },
-  { category: 'Open Electives (OEC)', percentage: 15 },
-  { category: 'Project & Internship', percentage: 15 },
+  { name: 'Core Courses (PCC)', percentage: 40 },
+  { name: 'Basic Sciences (BSC)', percentage: 18 },
+  { name: 'Humanities & UHV', percentage: 12 },
+  { name: 'Open Electives (OEC)', percentage: 15 },
+  { name: 'Internship & Project', percentage: 15 },
 ];
 
 const COLORS = ['#0284c7', '#10b981', '#f59e0b', '#8b5cf6', '#ec4899'];
@@ -68,10 +68,12 @@ export const AnalyticsPage: React.FC = () => {
           <div className="h-56">
             <ResponsiveContainer width="100%" height="100%">
               <LineChart data={complianceTrend}>
-                <XAxis dataKey="year" stroke="#64748b" fontSize={11} />
-                <YAxis stroke="#64748b" fontSize={11} domain={[60, 100]} />
+                <XAxis dataKey="year" stroke="#94a3b8" fontSize={11} />
+                <YAxis stroke="#94a3b8" fontSize={11} domain={[60, 100]} />
                 <Tooltip
-                  contentStyle={{ backgroundColor: '#0f172a', borderColor: '#334155', borderRadius: '8px', color: '#fff' }}
+                  contentStyle={{ backgroundColor: '#020617', borderColor: '#334155', borderRadius: '10px', color: '#ffffff' }}
+                  itemStyle={{ color: '#38bdf8', fontWeight: 'bold' }}
+                  labelStyle={{ color: '#f8fafc', fontWeight: 'bold' }}
                 />
                 <Line type="monotone" dataKey="score" stroke="#10b981" strokeWidth={3} dot={{ r: 5 }} />
               </LineChart>
@@ -91,15 +93,19 @@ export const AnalyticsPage: React.FC = () => {
                   data={creditDistribution}
                   cx="50%"
                   cy="50%"
-                  outerRadius={75}
+                  outerRadius={70}
                   dataKey="percentage"
-                  label={({ name, percent }) => `${name} (${(percent * 100).toFixed(0)}%)`}
+                  label={({ name, percentage }) => `${name}: ${percentage}%`}
                 >
                   {creditDistribution.map((entry, index) => (
                     <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
                   ))}
                 </Pie>
-                <Tooltip contentStyle={{ backgroundColor: '#0f172a', borderColor: '#334155', borderRadius: '8px' }} />
+                <Tooltip
+                  contentStyle={{ backgroundColor: '#020617', borderColor: '#334155', borderRadius: '10px', color: '#ffffff' }}
+                  itemStyle={{ color: '#38bdf8', fontWeight: 'bold' }}
+                  labelStyle={{ color: '#f8fafc', fontWeight: 'bold' }}
+                />
               </PieChart>
             </ResponsiveContainer>
           </div>
@@ -113,9 +119,13 @@ export const AnalyticsPage: React.FC = () => {
           <div className="h-64">
             <ResponsiveContainer width="100%" height="100%">
               <BarChart data={adoptionData}>
-                <XAxis dataKey="state" stroke="#64748b" fontSize={11} />
-                <YAxis stroke="#64748b" fontSize={11} />
-                <Tooltip contentStyle={{ backgroundColor: '#0f172a', borderColor: '#334155', borderRadius: '8px' }} />
+                <XAxis dataKey="state" stroke="#94a3b8" fontSize={11} />
+                <YAxis stroke="#94a3b8" fontSize={11} />
+                <Tooltip
+                  contentStyle={{ backgroundColor: '#020617', borderColor: '#334155', borderRadius: '10px', color: '#ffffff' }}
+                  itemStyle={{ color: '#38bdf8', fontWeight: 'bold' }}
+                  labelStyle={{ color: '#f8fafc', fontWeight: 'bold' }}
+                />
                 <Bar dataKey="colleges" fill="#334155" name="Affiliated Colleges" radius={[4, 4, 0, 0]} />
                 <Bar dataKey="adopted" fill="#0284c7" name="Adopted Curricula" radius={[4, 4, 0, 0]} />
               </BarChart>
