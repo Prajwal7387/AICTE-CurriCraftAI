@@ -292,7 +292,7 @@ export const DashboardPage: React.FC = () => {
                       <div>{curr.degree}</div>
                       <span className="text-slate-500 text-[11px]">{curr.branch}</span>
                     </td>
-                    <td className="p-3 text-slate-300 font-semibold">{curr.totalCredits} Cr</td>
+                    <td className="p-3 text-slate-300 font-semibold">{curr.totalCredits} Credits</td>
                     <td className="p-3">
                       <span className="px-2 py-0.5 rounded text-[11px] font-semibold bg-emerald-500/10 text-emerald-400 border border-emerald-500/20">
                         {curr.nepComplianceScore || 90}%
