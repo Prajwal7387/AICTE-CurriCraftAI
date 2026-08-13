@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useCurriculumStore } from '../../store/useCurriculumStore';
-import { GitBranch, Clock, Plus, RefreshCw, FileDiff, CheckCircle, Tag, Sparkles, X, Layers } from 'lucide-react';
+import { GitBranch, Clock, Plus, RefreshCw, FileDiff, CheckCircle, Tag, Sparkles, X, Layers, AlertCircle, Lightbulb } from 'lucide-react';
 import { api } from '../../services/api';
 import { CurriculumVersion } from '../../types';
 
@@ -70,13 +70,13 @@ export const VersionControlPage: React.FC = () => {
     }
   };
 
-  const handleCreateSnapshot = async (e: React.FormEvent) => {
-    e.preventDefault();
+  const handleCreateSnapshot = async (e?: React.FormEvent) => {
+    if (e) e.preventDefault();
     if (!activeCurriculum) return;
     setIsCreating(true);
 
     const nextVerNum = `v2.${versions.length + 1}`;
-    const commitMessage = versionMsg.trim() || 'Manual version snapshot created by user';
+    const commitMessage = versionMsg.trim() || `Model curriculum iteration snapshot (${nextVerNum})`;
     const tagLabel = newVersionTag.trim() || 'Minor Revision';
 
     const newVerItem: CurriculumVersion = {
@@ -103,7 +103,7 @@ export const VersionControlPage: React.FC = () => {
         setVersionMsg('');
         setNewVersionTag('');
         setIsCreating(false);
-        showToast(`Version snapshot ${nextVerNum} created and tagged successfully!`);
+        showToast(`Version snapshot ${nextVerNum} created and saved to history!`);
         return;
       }
     } catch {
@@ -115,7 +115,7 @@ export const VersionControlPage: React.FC = () => {
     setVersionMsg('');
     setNewVersionTag('');
     setIsCreating(false);
-    showToast(`Version snapshot ${nextVerNum} created and tagged successfully!`);
+    showToast(`Version snapshot ${nextVerNum} created and saved to history!`);
   };
 
   const handleRestore = async (versionId: string) => {
@@ -160,8 +160,14 @@ export const VersionControlPage: React.FC = () => {
       modulesAdded: [{ code: 'HSMC-UHV2', title: 'Universal Human Values-II', credits: 3 }],
     });
 
-    showToast(`Compared versions ${topV1.version} and ${topV2.version}`);
+    showToast(`Diff comparison computed between ${topV1.version} and ${topV2.version}`);
   };
+
+  const presetMessages = [
+    { msg: 'Added NEP 2020 Multidisciplinary Elective credits', tag: 'NEP 2020 Audit Pass' },
+    { msg: 'Revised Bloom Outcome levels for practical lab modules', tag: 'Bloom Alignment' },
+    { msg: 'Approved by AICTE Peer Review Committee', tag: 'AICTE Approved' },
+  ];
 
   return (
     <div className="space-y-6">
@@ -176,41 +182,83 @@ export const VersionControlPage: React.FC = () => {
         </div>
       )}
 
-      {/* Header */}
-      <div className="bg-slate-900 border border-slate-800 rounded-2xl p-5 flex flex-col md:flex-row md:items-center justify-between gap-4 shadow-xl">
-        <div>
-          <div className="flex items-center space-x-2 text-xs font-semibold text-purple-400 mb-1">
-            <GitBranch className="w-4 h-4 text-emerald-400" />
-            <span>Git-Style Model Curriculum Snapshot System</span>
+      {/* Header Banner */}
+      <div className="bg-gradient-to-r from-violet-950 via-slate-900 to-indigo-950 border border-slate-800 rounded-3xl p-6 shadow-2xl space-y-3">
+        <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
+          <div>
+            <div className="inline-flex items-center space-x-2 px-3 py-1 rounded-full bg-purple-500/15 border border-purple-500/30 text-purple-300 text-xs font-bold mb-2">
+              <GitBranch className="w-3.5 h-3.5 text-emerald-400" />
+              <span>Git-Style Model Curriculum Snapshot System</span>
+            </div>
+            <h1 className="text-3xl font-black text-white tracking-tight">Curriculum Version Control</h1>
+            <p className="text-xs text-slate-300 max-w-2xl leading-relaxed mt-1">
+              Track historical snapshots, compare version diffs, and restore previous curriculum revisions.
+            </p>
           </div>
-          <h1 className="text-2xl font-bold text-white tracking-tight">Curriculum Version Control</h1>
-          <p className="text-xs text-slate-400 mt-1">
-            Track historical snapshots, compare version diffs, and restore previous curriculum revisions.
-          </p>
+
+          <button
+            onClick={handleCompareLatest}
+            className="px-4 py-2.5 bg-slate-800 hover:bg-slate-700 text-purple-300 text-xs font-bold rounded-xl border border-slate-700 hover:border-purple-500 flex items-center space-x-2 shadow-lg transition-all"
+          >
+            <FileDiff className="w-4 h-4 text-amber-400" />
+            <span>Compare Top 2 Versions</span>
+          </button>
         </div>
 
-        <button
-          onClick={handleCompareLatest}
-          className="px-4 py-2 bg-slate-800 hover:bg-slate-700 text-purple-300 text-xs font-bold rounded-xl border border-slate-700 hover:border-purple-500 flex items-center space-x-2 shadow transition-all"
-        >
-          <FileDiff className="w-4 h-4 text-amber-400" />
-          <span>Compare Top 2 Versions</span>
-        </button>
+        {/* Active Curriculum Badge Bar */}
+        {activeCurriculum && (
+          <div className="pt-3 border-t border-white/10 flex flex-wrap items-center justify-between text-xs text-slate-300 gap-2">
+            <div className="flex items-center gap-2">
+              <span className="font-mono text-purple-300 font-bold bg-white/10 px-2 py-0.5 rounded">{activeCurriculum.code}</span>
+              <span className="font-bold text-white">{activeCurriculum.title}</span>
+            </div>
+            <div className="flex items-center gap-3">
+              <span className="text-emerald-300 font-semibold">{activeCurriculum.totalCredits} Total Credits</span>
+              <span className="px-2.5 py-0.5 rounded-full bg-purple-500/20 text-purple-300 font-mono text-[10px] font-bold border border-purple-500/30">
+                Active Version: {activeCurriculum.currentVersion || 'v2.0'}
+              </span>
+            </div>
+          </div>
+        )}
       </div>
 
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-6">
         {/* Create Snapshot Form */}
         <div className="lg:col-span-4 bg-slate-900/80 border border-slate-800 rounded-2xl p-5 space-y-4 shadow-xl">
-          <h3 className="text-sm font-bold text-white flex items-center gap-2">
-            <Plus className="w-4 h-4 text-purple-400" /> Create Version Snapshot
-          </h3>
+          <div className="flex items-center justify-between">
+            <h3 className="text-sm font-bold text-white flex items-center gap-2">
+              <Plus className="w-4 h-4 text-purple-400" /> Create Version Snapshot
+            </h3>
+            <span className="text-[10px] text-slate-400 bg-slate-950 px-2 py-0.5 rounded border border-slate-800 flex items-center gap-1">
+              <Lightbulb className="w-3 h-3 text-amber-400" /> Click presets below
+            </span>
+          </div>
+
+          {/* Preset Buttons */}
+          <div className="space-y-1.5">
+            <span className="text-[10px] font-bold text-slate-400 uppercase tracking-wider">Quick Commit Presets:</span>
+            <div className="space-y-1">
+              {presetMessages.map((p, idx) => (
+                <button
+                  key={idx}
+                  type="button"
+                  onClick={() => {
+                    setVersionMsg(p.msg);
+                    setNewVersionTag(p.tag);
+                  }}
+                  className="w-full text-left p-2 rounded-lg bg-slate-950 hover:bg-purple-950/40 border border-slate-800 hover:border-purple-500/40 text-[11px] text-slate-300 hover:text-purple-200 transition-all truncate"
+                >
+                  + {p.msg}
+                </button>
+              ))}
+            </div>
+          </div>
 
           <form onSubmit={handleCreateSnapshot} className="space-y-3">
             <div>
-              <label className="block text-xs font-bold text-slate-300 mb-1">Snapshot Commit Message *</label>
+              <label className="block text-xs font-bold text-slate-300 mb-1">Snapshot Commit Message</label>
               <input
                 type="text"
-                required
                 value={versionMsg}
                 onChange={(e) => setVersionMsg(e.target.value)}
                 placeholder="e.g. Added NEP Universal Human Values module"
@@ -314,4 +362,5 @@ export const VersionControlPage: React.FC = () => {
     </div>
   );
 };
+
 
