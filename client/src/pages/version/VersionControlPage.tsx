@@ -183,34 +183,34 @@ export const VersionControlPage: React.FC = () => {
       )}
 
       {/* Header Banner */}
-      <div className="bg-gradient-to-r from-violet-950 via-slate-900 to-indigo-950 border border-slate-200 dark:border-slate-800 rounded-3xl p-6 shadow-2xl space-y-3">
+      <div className="bg-gradient-to-r from-violet-950 via-slate-900 to-indigo-950 border border-slate-200 dark:border-slate-800 rounded-3xl p-6 shadow-2xl space-y-3 text-white">
         <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
           <div>
             <div className="inline-flex items-center space-x-2 px-3 py-1 rounded-full bg-purple-500/15 border border-purple-500/30 text-purple-300 text-xs font-bold mb-2">
               <GitBranch className="w-3.5 h-3.5 text-emerald-400" />
               <span>Git-Style Model Curriculum Snapshot System</span>
             </div>
-            <h1 className="text-3xl font-black text-slate-900 dark:text-white tracking-tight">Curriculum Version Control</h1>
-            <p className="text-xs text-slate-800 dark:text-slate-300 max-w-2xl leading-relaxed mt-1">
+            <h1 className="text-3xl font-black text-white tracking-tight">Curriculum Version Control</h1>
+            <p className="text-xs text-slate-200 max-w-2xl leading-relaxed mt-1">
               Track historical snapshots, compare version diffs, and restore previous curriculum revisions.
             </p>
           </div>
 
           <button
             onClick={handleCompareLatest}
-            className="px-4 py-2.5 bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:bg-slate-700 text-purple-300 text-xs font-bold rounded-xl border border-slate-300 dark:border-slate-700 hover:border-purple-500 flex items-center space-x-2 shadow-lg transition-all"
+            className="px-4 py-2.5 bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-700 text-purple-700 dark:text-purple-300 text-xs font-bold rounded-xl border border-purple-200 dark:border-slate-700 hover:border-purple-500 flex items-center space-x-2 shadow-lg transition-all"
           >
-            <FileDiff className="w-4 h-4 text-amber-400" />
+            <FileDiff className="w-4 h-4 text-amber-500 dark:text-amber-400" />
             <span>Compare Top 2 Versions</span>
           </button>
         </div>
 
         {/* Active Curriculum Badge Bar */}
         {activeCurriculum && (
-          <div className="pt-3 border-t border-white/10 flex flex-wrap items-center justify-between text-xs text-slate-800 dark:text-slate-300 gap-2">
+          <div className="pt-3 border-t border-white/10 flex flex-wrap items-center justify-between text-xs text-slate-200 gap-2">
             <div className="flex items-center gap-2">
               <span className="font-mono text-purple-300 font-bold bg-white/10 px-2 py-0.5 rounded">{activeCurriculum.code}</span>
-              <span className="font-bold text-slate-900 dark:text-white">{activeCurriculum.title}</span>
+              <span className="font-bold text-white">{activeCurriculum.title}</span>
             </div>
             <div className="flex items-center gap-3">
               <span className="text-emerald-300 font-semibold">{activeCurriculum.totalCredits} Total Credits</span>
@@ -227,10 +227,10 @@ export const VersionControlPage: React.FC = () => {
         <div className="lg:col-span-4 bg-slate-50/80 dark:bg-slate-900/80 border border-slate-200 dark:border-slate-800 rounded-2xl p-5 space-y-4 shadow-xl">
           <div className="flex items-center justify-between">
             <h3 className="text-sm font-bold text-slate-900 dark:text-white flex items-center gap-2">
-              <Plus className="w-4 h-4 text-purple-400" /> Create Version Snapshot
+              <Plus className="w-4 h-4 text-purple-600 dark:text-purple-400" /> Create Version Snapshot
             </h3>
             <span className="text-[10px] text-slate-600 dark:text-slate-400 bg-white dark:bg-slate-950 px-2 py-0.5 rounded border border-slate-200 dark:border-slate-800 flex items-center gap-1">
-              <Lightbulb className="w-3 h-3 text-amber-400" /> Click presets below
+              <Lightbulb className="w-3 h-3 text-amber-500 dark:text-amber-400" /> Click presets below
             </span>
           </div>
 
@@ -246,7 +246,7 @@ export const VersionControlPage: React.FC = () => {
                     setVersionMsg(p.msg);
                     setNewVersionTag(p.tag);
                   }}
-                  className="w-full text-left p-2 rounded-lg bg-white dark:bg-slate-950 hover:bg-purple-950/40 border border-slate-200 dark:border-slate-800 hover:border-purple-500/40 text-[11px] text-slate-800 dark:text-slate-300 hover:text-purple-200 transition-all truncate"
+                  className="w-full text-left p-2 rounded-lg bg-white dark:bg-slate-950 hover:bg-purple-50 dark:hover:bg-purple-950/40 border border-slate-200 dark:border-slate-800 hover:border-purple-500/40 text-[11px] text-slate-700 dark:text-slate-300 hover:text-purple-700 dark:hover:text-purple-200 transition-all truncate"
                 >
                   + {p.msg}
                 </button>
@@ -280,7 +280,7 @@ export const VersionControlPage: React.FC = () => {
             <button
               type="submit"
               disabled={isCreating}
-              className="w-full py-2.5 bg-gradient-to-r from-purple-600 to-indigo-600 hover:from-purple-500 hover:to-indigo-500 text-slate-900 dark:text-white text-xs font-bold rounded-xl transition-all flex items-center justify-center space-x-2 shadow-lg shadow-purple-600/25 transform hover:-translate-y-0.5"
+              className="w-full py-2.5 bg-gradient-to-r from-purple-600 to-indigo-600 hover:from-purple-500 hover:to-indigo-500 text-white text-xs font-bold rounded-xl transition-all flex items-center justify-center space-x-2 shadow-lg shadow-purple-600/25 transform hover:-translate-y-0.5"
             >
               <GitBranch className="w-4 h-4" />
               <span>{isCreating ? 'Creating Snapshot...' : 'Tag & Save Version'}</span>
@@ -290,18 +290,18 @@ export const VersionControlPage: React.FC = () => {
           {/* Diff Viewer Card */}
           {diffResult && (
             <div className="pt-4 border-t border-slate-200 dark:border-slate-800 space-y-2 animate-in fade-in duration-200">
-              <h4 className="text-xs font-bold text-amber-400 flex items-center gap-1.5">
+              <h4 className="text-xs font-bold text-amber-600 dark:text-amber-400 flex items-center gap-1.5">
                 <FileDiff className="w-4 h-4" /> Version Diff Comparison
               </h4>
               <div className="p-3.5 bg-white dark:bg-slate-950 rounded-xl border border-amber-500/30 text-xs space-y-1.5 shadow-md">
                 <div className="flex items-center justify-between font-mono text-[11px] font-bold text-slate-800 dark:text-slate-300">
                   <span>{diffResult.v1.version}</span>
                   <span className="text-slate-500">→</span>
-                  <span className="text-emerald-400">{diffResult.v2.version}</span>
+                  <span className="text-emerald-600 dark:text-emerald-400">{diffResult.v2.version}</span>
                 </div>
-                <p className="text-emerald-400 font-semibold text-[11px]">Total Credit Delta: {diffResult.creditDelta} Credits</p>
+                <p className="text-emerald-600 dark:text-emerald-400 font-semibold text-[11px]">Total Credit Delta: {diffResult.creditDelta} Credits</p>
                 <p className="text-slate-600 dark:text-slate-400 text-[11px]">Milestone Tag: {diffResult.v2.message}</p>
-                <div className="pt-1.5 border-t border-slate-200 dark:border-slate-800 text-[10px] text-cyan-300 font-mono">
+                <div className="pt-1.5 border-t border-slate-200 dark:border-slate-800 text-[10px] text-cyan-700 dark:text-cyan-300 font-mono">
                   + Added: {diffResult.modulesAdded[0].code} - {diffResult.modulesAdded[0].title}
                 </div>
               </div>
@@ -313,10 +313,10 @@ export const VersionControlPage: React.FC = () => {
         <div className="lg:col-span-8 bg-slate-50/80 dark:bg-slate-900/80 border border-slate-200 dark:border-slate-800 rounded-2xl p-5 space-y-4 shadow-xl">
           <div className="flex items-center justify-between">
             <h3 className="text-sm font-bold text-slate-900 dark:text-white flex items-center gap-2">
-              <Clock className="w-4 h-4 text-emerald-400" /> Historical Snapshot Timeline ({versions.length})
+              <Clock className="w-4 h-4 text-emerald-600 dark:text-emerald-400" /> Historical Snapshot Timeline ({versions.length})
             </h3>
             {activeCurriculum?.currentVersion && (
-              <span className="px-2.5 py-0.5 rounded-full bg-indigo-500/10 text-indigo-300 font-mono text-[10px] font-bold border border-indigo-500/20">
+              <span className="px-2.5 py-0.5 rounded-full bg-indigo-500/10 text-indigo-700 dark:text-indigo-300 font-mono text-[10px] font-bold border border-indigo-500/20">
                 Active: {activeCurriculum.currentVersion}
               </span>
             )}
@@ -330,11 +330,11 @@ export const VersionControlPage: React.FC = () => {
               >
                 <div className="space-y-1">
                   <div className="flex items-center space-x-2">
-                    <span className="px-2 py-0.5 rounded text-xs font-mono font-bold bg-purple-500/15 text-purple-400 border border-purple-500/30">
+                    <span className="px-2 py-0.5 rounded text-xs font-mono font-bold bg-purple-500/15 text-purple-700 dark:text-purple-400 border border-purple-500/30">
                       {ver.version}
                     </span>
                     {ver.tag && (
-                      <span className="px-2 py-0.5 rounded text-[10px] font-semibold bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 flex items-center gap-1">
+                      <span className="px-2 py-0.5 rounded text-[10px] font-semibold bg-emerald-50 dark:bg-emerald-500/10 text-emerald-700 dark:text-emerald-400 border border-emerald-200 dark:border-emerald-500/20 flex items-center gap-1">
                         <Tag className="w-3 h-3" /> {ver.tag}
                       </span>
                     )}
@@ -348,9 +348,9 @@ export const VersionControlPage: React.FC = () => {
                 <div className="flex items-center space-x-2">
                   <button
                     onClick={() => handleRestore(ver._id)}
-                    className="px-3 py-1.5 bg-slate-100 dark:bg-slate-800 hover:bg-purple-600 text-slate-900 dark:text-slate-200 hover:text-slate-900 dark:text-white text-xs font-bold rounded-lg border border-slate-300 dark:border-slate-700 hover:border-purple-500 flex items-center space-x-1.5 transition-all shadow"
+                    className="px-3 py-1.5 bg-slate-100 dark:bg-slate-800 hover:bg-purple-600 text-slate-800 dark:text-slate-200 hover:text-white text-xs font-bold rounded-lg border border-slate-300 dark:border-slate-700 hover:border-purple-500 flex items-center space-x-1.5 transition-all shadow"
                   >
-                    <RefreshCw className="w-3.5 h-3.5 text-purple-300" />
+                    <RefreshCw className="w-3.5 h-3.5 text-purple-600 dark:text-purple-300" />
                     <span>Restore Snapshot</span>
                   </button>
                 </div>

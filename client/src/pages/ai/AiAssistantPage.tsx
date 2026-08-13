@@ -89,13 +89,72 @@ export const AiAssistantPage: React.FC = () => {
     }
   };
 
+  const cleanOutcomeDraft = (text: string): string => {
+    let cleaned = text.trim();
+    if (cleaned.endsWith('.')) cleaned = cleaned.slice(0, -1);
+    const prefixes = [
+      /^understand\s+/i,
+      /^basic\s+knowledge\s+of\s+/i,
+      /^knowledge\s+of\s+/i,
+      /^learn\s+/i,
+      /^know\s+about\s+/i,
+      /^gain\s+knowledge\s+on\s+/i,
+      /^ability\s+to\s+/i,
+      /^study\s+of\s+/i,
+      /^get\s+familiar\s+with\s+/i,
+      /^be\s+able\s+to\s+/i,
+    ];
+    for (const pattern of prefixes) {
+      if (pattern.test(cleaned)) {
+        cleaned = cleaned.replace(pattern, '').trim();
+        break;
+      }
+    }
+    if (cleaned.length > 0) {
+      cleaned = cleaned.charAt(0).toLowerCase() + cleaned.slice(1);
+    }
+    return cleaned;
+  };
+
   const handleRewriteOutcome = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsRewriting(true);
 
+    const coreConcept = cleanOutcomeDraft(outcomeText);
+    let verbs = '';
+    let metricSuffix = '';
+
+    switch (targetBloom) {
+      case 'Remember':
+        verbs = 'Recall, identify, and list fundamental principles of';
+        metricSuffix = 'using standardized domain terminology and definitions.';
+        break;
+      case 'Understand':
+        verbs = 'Explain, illustrate, and interpret core concepts of';
+        metricSuffix = 'through comprehensive architectural diagrams and functional summaries.';
+        break;
+      case 'Apply':
+        verbs = 'Implement, execute, and apply';
+        metricSuffix = 'to solve complex real-world engineering problems.';
+        break;
+      case 'Analyze':
+        verbs = 'Analyze, compare, and benchmark';
+        metricSuffix = 'against operational efficiency, time-space complexity, and resource constraints.';
+        break;
+      case 'Evaluate':
+        verbs = 'Assess, critique, and validate';
+        metricSuffix = 'using empirical benchmarks, stress testing, and industry quality metrics.';
+        break;
+      case 'Create':
+      default:
+        verbs = 'Design, synthesize, and deploy advanced frameworks for';
+        metricSuffix = 'incorporating modern engineering tools and NEP 2020 standards.';
+        break;
+    }
+
     const fallbackResult = {
-      improvedOutcome: `Formulate, evaluate, and deploy ${outcomeText.toLowerCase().replace('.', '')} using measurable active verbs and industry-standard engineering frameworks.`,
-      explanation: `Outcome revised to match target Bloom cognitive level '${targetBloom}' with clear measurable assessment criteria.`,
+      improvedOutcome: `${verbs} ${coreConcept} ${metricSuffix}`,
+      explanation: `Outcome revised to match target Bloom cognitive level '${targetBloom}' with active measurable verbs and specific quantitative criteria.`,
     };
 
     try {
@@ -135,20 +194,20 @@ export const AiAssistantPage: React.FC = () => {
     <div className="space-y-6">
       {/* Toast Notification */}
       {toastMessage && (
-        <div className="fixed bottom-6 right-6 z-50 bg-slate-50 dark:bg-slate-900 border border-emerald-500/40 text-emerald-300 px-4 py-3 rounded-xl shadow-2xl flex items-center gap-3 animate-bounce">
-          <Sparkles className="w-5 h-5 text-emerald-400" />
+        <div className="fixed bottom-6 right-6 z-50 bg-slate-100 dark:bg-slate-900 border border-emerald-500/50 text-emerald-900 dark:text-emerald-300 px-4 py-3 rounded-xl shadow-2xl flex items-center gap-3 animate-bounce">
+          <Sparkles className="w-5 h-5 text-emerald-600 dark:text-emerald-400" />
           <span className="text-xs font-semibold">{toastMessage}</span>
         </div>
       )}
 
       {/* Banner */}
-      <div className="bg-gradient-to-r from-violet-950 via-slate-900 to-indigo-950 border border-slate-200 dark:border-slate-800 rounded-3xl p-6 shadow-2xl space-y-2">
+      <div className="bg-gradient-to-r from-violet-950 via-slate-900 to-indigo-950 border border-slate-200 dark:border-slate-800 rounded-3xl p-6 shadow-2xl space-y-2 text-white">
         <div className="inline-flex items-center space-x-2 px-3.5 py-1 rounded-full bg-violet-500/15 border border-violet-500/30 text-violet-300 text-xs font-bold">
           <Sparkles className="w-3.5 h-3.5 text-amber-400" />
           <span>Google Gemini AI Model Curriculum Synthesis Engine</span>
         </div>
-        <h1 className="text-3xl font-black text-slate-900 dark:text-white tracking-tight">AI Curriculum Assistant</h1>
-        <p className="text-xs text-slate-800 dark:text-slate-300 max-w-3xl leading-relaxed">
+        <h1 className="text-3xl font-black text-white tracking-tight">AI Curriculum Assistant</h1>
+        <p className="text-xs text-slate-200 max-w-3xl leading-relaxed">
           Generate structured syllabus modules, rewrite learning outcomes according to Bloom's Taxonomy, and analyze curriculum gaps using Gemini AI models.
         </p>
       </div>
@@ -158,16 +217,16 @@ export const AiAssistantPage: React.FC = () => {
         <div className="lg:col-span-7 bg-slate-50/80 dark:bg-slate-900/80 border border-slate-200 dark:border-slate-800 rounded-2xl p-5 space-y-4 shadow-xl">
           <div className="flex items-center justify-between">
             <h3 className="text-base font-bold text-slate-900 dark:text-white flex items-center gap-2">
-              <Wand2 className="w-5 h-5 text-violet-400" /> AI Syllabus Synthesizer
+              <Wand2 className="w-5 h-5 text-violet-600 dark:text-violet-400" /> AI Syllabus Synthesizer
             </h3>
-            <span className="text-[11px] text-slate-600 dark:text-slate-400 bg-white dark:bg-slate-950 px-2.5 py-1 rounded-lg border border-slate-200 dark:border-slate-800 flex items-center gap-1">
-              <Lightbulb className="w-3 h-3 text-amber-400" /> Quick Presets Available
+            <span className="text-[11px] text-slate-700 dark:text-slate-300 bg-white dark:bg-slate-950 px-2.5 py-1 rounded-lg border border-slate-200 dark:border-slate-800 flex items-center gap-1">
+              <Lightbulb className="w-3 h-3 text-amber-500 dark:text-amber-400" /> Quick Presets Available
             </span>
           </div>
 
           {/* Quick Presets */}
           <div className="space-y-1.5">
-            <span className="text-[10px] font-bold text-slate-600 dark:text-slate-400 uppercase tracking-wider">Preset Sample Courses:</span>
+            <span className="text-[10px] font-bold text-slate-700 dark:text-slate-300 uppercase tracking-wider">Preset Sample Courses:</span>
             <div className="flex flex-wrap gap-1.5">
               {presetTitles.map((p, i) => (
                 <button
@@ -177,7 +236,7 @@ export const AiAssistantPage: React.FC = () => {
                     setCourseTitle(p.title);
                     setBranch(p.branch);
                   }}
-                  className="px-2.5 py-1 rounded-lg bg-white dark:bg-slate-950 hover:bg-violet-950/40 border border-slate-200 dark:border-slate-800 hover:border-violet-500/40 text-[10px] text-slate-800 dark:text-slate-300 hover:text-violet-200 transition-all text-left truncate max-w-xs"
+                  className="px-2.5 py-1 rounded-lg bg-white dark:bg-slate-950 hover:bg-violet-50 dark:hover:bg-violet-950/40 border border-slate-200 dark:border-slate-800 hover:border-violet-500/40 text-[10px] text-slate-800 dark:text-slate-200 hover:text-violet-700 dark:hover:text-violet-200 transition-all text-left truncate max-w-xs"
                 >
                   + {p.branch}
                 </button>
@@ -211,7 +270,7 @@ export const AiAssistantPage: React.FC = () => {
             <button
               type="submit"
               disabled={isGenerating}
-              className="w-full py-3 bg-gradient-to-r from-violet-600 via-indigo-600 to-purple-600 hover:from-violet-500 hover:to-purple-500 text-slate-900 dark:text-white text-xs font-bold rounded-xl shadow-lg shadow-violet-600/25 flex items-center justify-center space-x-2 transition-all transform hover:-translate-y-0.5"
+              className="w-full py-3 bg-gradient-to-r from-violet-600 via-indigo-600 to-purple-600 hover:from-violet-500 hover:to-purple-500 text-white text-xs font-bold rounded-xl shadow-lg shadow-violet-600/25 flex items-center justify-center space-x-2 transition-all transform hover:-translate-y-0.5"
             >
               <Sparkles className="w-4 h-4 text-amber-300" />
               <span>{isGenerating ? 'Gemini AI Synthesizing...' : 'Generate Modules with Gemini AI'}</span>
@@ -222,13 +281,13 @@ export const AiAssistantPage: React.FC = () => {
           {aiModules.length > 0 && (
             <div className="pt-4 border-t border-slate-200 dark:border-slate-800 space-y-3">
               <div className="flex items-center justify-between">
-                <h4 className="text-xs font-bold text-violet-400 uppercase tracking-wider flex items-center gap-1.5">
-                  <CheckCircle className="w-4 h-4 text-emerald-400" /> Generated Modules ({aiModules.length})
+                <h4 className="text-xs font-bold text-violet-700 dark:text-violet-400 uppercase tracking-wider flex items-center gap-1.5">
+                  <CheckCircle className="w-4 h-4 text-emerald-600 dark:text-emerald-400" /> Generated Modules ({aiModules.length})
                 </h4>
                 {activeCurriculum && (
                   <button
                     onClick={handleIntegrateIntoActive}
-                    className="px-3 py-1.5 bg-emerald-600 hover:bg-emerald-500 text-slate-900 dark:text-white text-xs font-bold rounded-xl flex items-center gap-1.5 shadow-lg shadow-emerald-600/20 transition-all"
+                    className="px-3 py-1.5 bg-emerald-600 hover:bg-emerald-500 text-white text-xs font-bold rounded-xl flex items-center gap-1.5 shadow-lg shadow-emerald-600/20 transition-all"
                   >
                     <CheckCircle className="w-3.5 h-3.5" /> Integrate into Workspace
                   </button>
@@ -237,20 +296,42 @@ export const AiAssistantPage: React.FC = () => {
 
               <div className="space-y-3">
                 {aiModules.map((mod, idx) => (
-                  <div key={idx} className="p-4 bg-white dark:bg-slate-950 border border-slate-200 dark:border-slate-800 hover:border-violet-500/30 rounded-xl space-y-2 text-xs transition-all shadow-md">
+                  <div key={idx} className="p-4 bg-white dark:bg-slate-950 border border-slate-200 dark:border-slate-800 hover:border-violet-500/30 rounded-xl space-y-2.5 text-xs transition-all shadow-md">
                     <div className="flex items-center justify-between font-bold text-slate-900 dark:text-white">
                       <span className="text-sm font-semibold text-slate-900 dark:text-white">
-                        <span className="font-mono text-violet-400 mr-2">{mod.code}</span>
+                        <span className="font-mono text-violet-700 dark:text-violet-400 mr-2">{mod.code}</span>
                         {mod.title}
                       </span>
-                      <span className="px-2 py-0.5 rounded bg-violet-500/10 text-violet-300 font-bold text-[10px] border border-violet-500/20">
-                        {mod.credits} Credits
+                      <span className="px-2 py-0.5 rounded bg-violet-100 dark:bg-violet-500/10 text-violet-800 dark:text-violet-300 font-bold text-[10px] border border-violet-200 dark:border-violet-500/20">
+                        {mod.credits} Credits ({mod.lectureHours || 3}L-{mod.tutorialHours || 0}T-{mod.practicalHours || 0}P)
                       </span>
                     </div>
-                    <p className="text-slate-800 dark:text-slate-300 text-[11px] leading-relaxed">{mod.description}</p>
+                    <p className="text-slate-800 dark:text-slate-200 text-[11px] leading-relaxed">{mod.description}</p>
+                    
                     {mod.topics && mod.topics.length > 0 && (
-                      <div className="text-[11px] text-slate-600 dark:text-slate-400 bg-slate-50/60 dark:bg-slate-900/60 p-2 rounded-lg border border-slate-200 dark:border-slate-800">
-                        <strong className="text-slate-800 dark:text-slate-300">Key Topics:</strong> {mod.topics.join(' • ')}
+                      <div className="text-[11px] text-slate-700 dark:text-slate-300 bg-slate-100 dark:bg-slate-900/60 p-2.5 rounded-lg border border-slate-200 dark:border-slate-800">
+                        <strong className="text-slate-900 dark:text-white font-bold mr-1">Key Topics:</strong> {mod.topics.join(' • ')}
+                      </div>
+                    )}
+
+                    {mod.learningOutcomes && mod.learningOutcomes.length > 0 && (
+                      <div className="space-y-1.5 pt-1">
+                        <span className="text-[10px] font-bold text-slate-700 dark:text-slate-300 uppercase tracking-wider">Mapped Learning Outcomes:</span>
+                        <div className="space-y-1">
+                          {mod.learningOutcomes.map((lo: any, lIdx: number) => (
+                            <div key={lIdx} className="flex items-start gap-2 bg-emerald-50/70 dark:bg-emerald-950/20 p-2 rounded-lg border border-emerald-200/60 dark:border-emerald-500/20 text-[11px]">
+                              <span className="px-1.5 py-0.5 bg-emerald-600 text-white font-bold text-[9px] rounded uppercase shrink-0 mt-0.5">
+                                {lo.bloomLevel || 'Apply'}
+                              </span>
+                              <div className="space-y-0.5">
+                                <p className="text-slate-900 dark:text-slate-100 font-medium leading-tight">{lo.description}</p>
+                                {lo.assessmentMethod && (
+                                  <p className="text-[10px] text-slate-600 dark:text-slate-400 italic">Assessment: {lo.assessmentMethod}</p>
+                                )}
+                              </div>
+                            </div>
+                          ))}
+                        </div>
                       </div>
                     )}
                   </div>
@@ -263,19 +344,19 @@ export const AiAssistantPage: React.FC = () => {
         {/* Right Column: Outcome Rewriter Tool */}
         <div className="lg:col-span-5 bg-slate-50/80 dark:bg-slate-900/80 border border-slate-200 dark:border-slate-800 rounded-2xl p-5 space-y-4 shadow-xl">
           <h3 className="text-base font-bold text-slate-900 dark:text-white flex items-center gap-2">
-            <RefreshCw className="w-5 h-5 text-emerald-400" /> Bloom Outcome Optimizer
+            <RefreshCw className="w-5 h-5 text-emerald-600 dark:text-emerald-400" /> Bloom Outcome Optimizer
           </h3>
 
           {/* Preset Draft Outcomes */}
           <div className="space-y-1.5">
-            <span className="text-[10px] font-bold text-slate-600 dark:text-slate-400 uppercase tracking-wider">Preset Outcome Drafts:</span>
+            <span className="text-[10px] font-bold text-slate-700 dark:text-slate-300 uppercase tracking-wider">Preset Outcome Drafts:</span>
             <div className="space-y-1">
               {presetOutcomes.map((draft, i) => (
                 <button
                   key={i}
                   type="button"
                   onClick={() => setOutcomeText(draft)}
-                  className="w-full text-left px-2.5 py-1 rounded-lg bg-white dark:bg-slate-950 hover:bg-emerald-950/40 border border-slate-200 dark:border-slate-800 hover:border-emerald-500/40 text-[10px] text-slate-800 dark:text-slate-300 hover:text-emerald-200 transition-all truncate"
+                  className="w-full text-left px-2.5 py-1 rounded-lg bg-white dark:bg-slate-950 hover:bg-emerald-50 dark:hover:bg-emerald-950/40 border border-slate-200 dark:border-slate-800 hover:border-emerald-500/40 text-[10px] text-slate-800 dark:text-slate-200 hover:text-emerald-700 dark:hover:text-emerald-200 transition-all truncate font-medium"
                 >
                   + {draft}
                 </button>
@@ -291,7 +372,7 @@ export const AiAssistantPage: React.FC = () => {
                 required
                 value={outcomeText}
                 onChange={(e) => setOutcomeText(e.target.value)}
-                className="w-full px-3.5 py-2.5 bg-white dark:bg-slate-950 border border-slate-200 dark:border-slate-800 rounded-xl text-xs text-slate-900 dark:text-white focus:outline-none focus:border-emerald-500 leading-relaxed"
+                className="w-full px-3.5 py-2.5 bg-white dark:bg-slate-950 border border-slate-200 dark:border-slate-800 rounded-xl text-xs text-slate-900 dark:text-white focus:outline-none focus:border-emerald-500 leading-relaxed font-medium"
               />
             </div>
 
@@ -300,7 +381,7 @@ export const AiAssistantPage: React.FC = () => {
               <select
                 value={targetBloom}
                 onChange={(e) => setTargetBloom(e.target.value)}
-                className="w-full px-3.5 py-2.5 bg-white dark:bg-slate-950 border border-slate-200 dark:border-slate-800 rounded-xl text-xs text-slate-900 dark:text-white focus:outline-none focus:border-emerald-500"
+                className="w-full px-3.5 py-2.5 bg-white dark:bg-slate-950 border border-slate-200 dark:border-slate-800 rounded-xl text-xs text-slate-900 dark:text-white focus:outline-none focus:border-emerald-500 font-medium"
               >
                 <option value="Remember">Remember (Level 1)</option>
                 <option value="Understand">Understand (Level 2)</option>
@@ -314,7 +395,7 @@ export const AiAssistantPage: React.FC = () => {
             <button
               type="submit"
               disabled={isRewriting}
-              className="w-full py-3 bg-gradient-to-r from-emerald-600 to-teal-600 hover:from-emerald-500 hover:to-teal-500 text-slate-900 dark:text-white text-xs font-bold rounded-xl shadow-lg shadow-emerald-600/25 flex items-center justify-center space-x-2 transition-all transform hover:-translate-y-0.5"
+              className="w-full py-3 bg-gradient-to-r from-emerald-600 to-teal-600 hover:from-emerald-500 hover:to-teal-500 text-white text-xs font-bold rounded-xl shadow-lg shadow-emerald-600/25 flex items-center justify-center space-x-2 transition-all transform hover:-translate-y-0.5"
             >
               <RefreshCw className={`w-4 h-4 ${isRewriting ? 'animate-spin' : ''}`} />
               <span>{isRewriting ? 'Optimizing with Gemini...' : 'Optimize Outcome Text'}</span>
@@ -324,18 +405,18 @@ export const AiAssistantPage: React.FC = () => {
           {improvedOutcome && (
             <div className="p-4 bg-white dark:bg-slate-950 border border-emerald-500/40 rounded-2xl space-y-2.5 text-xs shadow-lg animate-in fade-in duration-200">
               <div className="flex items-center justify-between">
-                <span className="font-bold text-emerald-400 flex items-center gap-1">
-                  <CheckCircle className="w-4 h-4 text-emerald-400" /> Enhanced Bloom Outcome:
+                <span className="font-bold text-emerald-700 dark:text-emerald-400 flex items-center gap-1 text-xs">
+                  <CheckCircle className="w-4 h-4 text-emerald-600 dark:text-emerald-400" /> Enhanced Bloom Outcome:
                 </span>
-                <span className="px-2 py-0.5 bg-emerald-500/20 text-emerald-300 text-[10px] font-bold rounded-full border border-emerald-500/30">
+                <span className="px-2.5 py-0.5 bg-emerald-500/20 text-emerald-800 dark:text-emerald-300 text-[10px] font-bold rounded-full border border-emerald-500/30">
                   {targetBloom}
                 </span>
               </div>
-              <p className="text-slate-900 dark:text-white font-bold leading-relaxed text-xs bg-emerald-950/30 p-3 rounded-xl border border-emerald-500/20">
+              <p className="text-slate-900 dark:text-white font-bold leading-relaxed text-xs bg-emerald-50 dark:bg-emerald-950/40 p-3.5 rounded-xl border border-emerald-200 dark:border-emerald-500/30">
                 "{improvedOutcome.improvedOutcome}"
               </p>
-              <p className="text-[11px] text-slate-600 dark:text-slate-400 italic leading-relaxed">
-                <Info className="w-3 h-3 text-emerald-400 inline mr-1" />
+              <p className="text-[11px] text-slate-700 dark:text-slate-300 font-medium italic leading-relaxed">
+                <Info className="w-3.5 h-3.5 text-emerald-600 dark:text-emerald-400 inline mr-1" />
                 {improvedOutcome.explanation}
               </p>
             </div>
@@ -345,4 +426,5 @@ export const AiAssistantPage: React.FC = () => {
     </div>
   );
 };
+
 

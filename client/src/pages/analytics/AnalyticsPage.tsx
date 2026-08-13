@@ -47,8 +47,8 @@ export const AnalyticsPage: React.FC = () => {
       {/* Header */}
       <div className="bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl p-5 flex flex-col md:flex-row md:items-center justify-between gap-4">
         <div>
-          <div className="flex items-center space-x-2 text-xs font-semibold text-brand-400 mb-1">
-            <BarChart3 className="w-4 h-4 text-brand-400" />
+          <div className="flex items-center space-x-2 text-xs font-semibold text-brand-600 dark:text-brand-400 mb-1">
+            <BarChart3 className="w-4 h-4 text-brand-600 dark:text-brand-400" />
             <span>AICTE National Academic Operations & Adoption Analytics</span>
           </div>
           <h1 className="text-2xl font-bold text-slate-900 dark:text-white tracking-tight">AICTE Curriculum Analytics</h1>

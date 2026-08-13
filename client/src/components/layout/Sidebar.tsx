@@ -97,12 +97,12 @@ export const Sidebar: React.FC = () => {
               className={({ isActive }) =>
                 `flex items-center space-x-3 px-3 py-2.5 rounded-xl text-sm font-medium transition-all ${
                   isActive
-                    ? 'bg-violet-600/20 text-violet-300 border border-violet-500/40 font-bold shadow-inner'
-                    : 'text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:text-slate-200 hover:bg-slate-50 dark:bg-slate-900'
+                    ? 'bg-violet-500/15 dark:bg-violet-600/20 text-violet-700 dark:text-violet-300 border border-violet-500/30 font-bold shadow-sm'
+                    : 'text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-slate-100 hover:bg-slate-100 dark:hover:bg-slate-900/60'
                 }`
               }
             >
-              <Icon className="w-4 h-4 text-violet-400" />
+              <Icon className="w-4 h-4 text-violet-600 dark:text-violet-400" />
               <span>{item.name}</span>
             </NavLink>
           );
@@ -115,7 +115,7 @@ export const Sidebar: React.FC = () => {
           <span>AICTE Model Portal</span>
           <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
         </div>
-        <p className="text-[11px] text-violet-400 font-semibold">{role.replace('_', ' ')} Mode</p>
+        <p className="text-[11px] text-violet-700 dark:text-violet-400 font-semibold">{role.replace('_', ' ')} Mode</p>
       </div>
     </aside>
   );

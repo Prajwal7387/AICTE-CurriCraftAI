@@ -23,15 +23,15 @@ export const UserProfileModal: React.FC<UserProfileModalProps> = ({ isOpen, onCl
   const getRoleBadgeStyle = (role: string) => {
     switch (role) {
       case 'ADMIN':
-        return 'bg-violet-500/15 text-violet-300 border-violet-500/30';
+        return 'bg-violet-500/15 text-violet-700 dark:text-violet-300 border-violet-500/30';
       case 'BUREAU_HEAD':
-        return 'bg-indigo-500/15 text-indigo-300 border-indigo-500/30';
+        return 'bg-indigo-500/15 text-indigo-700 dark:text-indigo-300 border-indigo-500/30';
       case 'EXPERT':
-        return 'bg-emerald-500/15 text-emerald-300 border-emerald-500/30';
+        return 'bg-emerald-500/15 text-emerald-700 dark:text-emerald-300 border-emerald-500/30';
       case 'REVIEWER':
-        return 'bg-purple-500/15 text-purple-300 border-purple-500/30';
+        return 'bg-purple-500/15 text-purple-700 dark:text-purple-300 border-purple-500/30';
       default:
-        return 'bg-amber-500/15 text-amber-300 border-amber-500/30';
+        return 'bg-amber-500/15 text-amber-700 dark:text-amber-300 border-amber-500/30';
     }
   };
 
@@ -150,7 +150,7 @@ export const UserProfileModal: React.FC<UserProfileModalProps> = ({ isOpen, onCl
               onClose();
               navigate('/login');
             }}
-            className="w-full py-2.5 bg-rose-600/15 hover:bg-rose-600 text-rose-300 hover:text-slate-900 dark:text-white text-xs font-bold rounded-xl border border-rose-500/30 flex items-center justify-center space-x-2 transition-all"
+            className="w-full py-2.5 bg-rose-50 dark:bg-rose-600/15 hover:bg-rose-600 text-rose-700 dark:text-rose-300 hover:text-white text-xs font-bold rounded-xl border border-rose-200 dark:border-rose-500/30 flex items-center justify-center space-x-2 transition-all"
           >
             <LogOut className="w-4 h-4" />
             <span>Sign Out Account</span>

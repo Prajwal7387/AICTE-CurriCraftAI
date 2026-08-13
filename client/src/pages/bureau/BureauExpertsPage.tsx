@@ -147,11 +147,11 @@ export const BureauExpertsPage: React.FC = () => {
       )}
 
       {/* Bureau Hero Header */}
-      <div className="p-8 rounded-3xl bg-gradient-to-r from-violet-900 via-indigo-800 to-purple-900 text-slate-900 dark:text-white shadow-2xl space-y-2 border border-violet-700/30">
+      <div className="p-8 rounded-3xl bg-gradient-to-r from-violet-900 via-indigo-800 to-purple-900 text-white shadow-2xl space-y-2 border border-violet-700/30">
         <div className="inline-flex items-center gap-2 rounded-full bg-white/10 px-3.5 py-1 text-xs font-bold backdrop-blur-md border border-white/15">
           <Building2 className="h-3.5 w-3.5 text-cyan-200" /> AICTE Academic Bureau Panel Management
         </div>
-        <h1 className="text-3xl font-black tracking-tight">Subject Expert Committee Roster</h1>
+        <h1 className="text-3xl font-black tracking-tight text-white">Subject Expert Committee Roster</h1>
         <p className="text-xs text-blue-100 max-w-2xl leading-relaxed">
           Authorize Subject Matter Experts (SMEs), assign model curricula for peer review, and manage bureau validation workloads.
         </p>
@@ -161,21 +161,21 @@ export const BureauExpertsPage: React.FC = () => {
             <UserCheck className="w-8 h-8 text-cyan-300" />
             <div>
               <p className="text-[10px] text-blue-200 uppercase font-bold tracking-wider">Empanelled Experts</p>
-              <p className="text-xl font-extrabold">{experts.length}</p>
+              <p className="text-xl font-extrabold text-white">{experts.length}</p>
             </div>
           </div>
           <div className="flex items-center gap-3 bg-white/5 p-3 rounded-2xl border border-white/10">
             <BookOpen className="w-8 h-8 text-amber-300" />
             <div>
               <p className="text-[10px] text-blue-200 uppercase font-bold tracking-wider">Active Reviews</p>
-              <p className="text-xl font-extrabold">{totalActiveReviews}</p>
+              <p className="text-xl font-extrabold text-white">{totalActiveReviews}</p>
             </div>
           </div>
           <div className="flex items-center gap-3 bg-white/5 p-3 rounded-2xl border border-white/10">
             <ShieldCheck className="w-8 h-8 text-emerald-300" />
             <div>
               <p className="text-[10px] text-blue-200 uppercase font-bold tracking-wider">Completed Validations</p>
-              <p className="text-xl font-extrabold">{totalCompletedReviews}</p>
+              <p className="text-xl font-extrabold text-white">{totalCompletedReviews}</p>
             </div>
           </div>
         </div>
@@ -186,7 +186,7 @@ export const BureauExpertsPage: React.FC = () => {
         <div>
           <h3 className="font-bold text-lg text-slate-900 dark:text-white flex items-center gap-2">
             Empanelled AICTE Subject Experts
-            <span className="px-2 py-0.5 rounded-full bg-violet-500/20 text-violet-300 font-mono text-xs font-bold border border-violet-500/30">
+            <span className="px-2 py-0.5 rounded-full bg-violet-500/20 text-violet-700 dark:text-violet-300 font-mono text-xs font-bold border border-violet-500/30">
               {filteredExperts.length}
             </span>
           </h3>
@@ -207,7 +207,7 @@ export const BureauExpertsPage: React.FC = () => {
 
           <button
             onClick={() => setIsEmpanelModalOpen(true)}
-            className="px-4 py-2 bg-gradient-to-r from-violet-600 to-indigo-600 hover:from-violet-500 hover:to-indigo-500 text-slate-900 dark:text-white text-xs font-bold rounded-xl shadow-lg flex items-center gap-1.5 transition-all transform hover:-translate-y-0.5"
+            className="px-4 py-2 bg-gradient-to-r from-violet-600 to-indigo-600 hover:from-violet-500 hover:to-indigo-500 text-white text-xs font-bold rounded-xl shadow-lg flex items-center gap-1.5 transition-all transform hover:-translate-y-0.5"
           >
             <Plus className="h-4 w-4" /> Empanel Expert
           </button>
@@ -219,10 +219,10 @@ export const BureauExpertsPage: React.FC = () => {
         {filteredExperts.map((exp) => (
           <div key={exp.id} className="glass-card-glow p-5 rounded-2xl space-y-4 hover:border-violet-500/40 transition-all">
             <div className="flex items-center justify-between">
-              <span className="px-2.5 py-0.5 rounded-full bg-violet-500/10 text-violet-400 border border-violet-500/20 font-bold text-[10px]">
+              <span className="px-2.5 py-0.5 rounded-full bg-violet-500/10 text-violet-700 dark:text-violet-400 border border-violet-500/20 font-bold text-[10px]">
                 {exp.dept}
               </span>
-              <span className="flex items-center gap-1 text-[11px] font-bold text-emerald-400">
+              <span className="flex items-center gap-1 text-[11px] font-bold text-emerald-600 dark:text-emerald-400">
                 <CheckCircle className="h-3.5 w-3.5" /> Empanelled
               </span>
             </div>
@@ -239,11 +239,11 @@ export const BureauExpertsPage: React.FC = () => {
             <div className="grid grid-cols-2 gap-2 p-3 bg-white/60 dark:bg-slate-950/60 rounded-xl text-center border border-slate-200 dark:border-slate-800">
               <div>
                 <span className="text-[10px] text-slate-500 uppercase font-bold">Active Reviews</span>
-                <p className="font-extrabold text-sm text-cyan-400">{exp.activeReviews}</p>
+                <p className="font-extrabold text-sm text-cyan-700 dark:text-cyan-400">{exp.activeReviews}</p>
               </div>
               <div>
                 <span className="text-[10px] text-slate-500 uppercase font-bold">Completed</span>
-                <p className="font-extrabold text-sm text-emerald-400">{exp.completed}</p>
+                <p className="font-extrabold text-sm text-emerald-700 dark:text-emerald-400">{exp.completed}</p>
               </div>
             </div>
 
@@ -254,7 +254,7 @@ export const BureauExpertsPage: React.FC = () => {
                   setSelectedCurriculumId(curricula[0]._id);
                 }
               }}
-              className="w-full py-2 bg-slate-100 dark:bg-slate-800 hover:bg-violet-600 text-slate-900 dark:text-slate-200 hover:text-slate-900 dark:text-white text-xs font-bold rounded-xl border border-slate-300 dark:border-slate-700 hover:border-violet-500 transition-all flex items-center justify-center gap-1.5 shadow-md"
+              className="w-full py-2 bg-slate-100 dark:bg-slate-800 hover:bg-violet-600 text-slate-800 dark:text-slate-200 hover:text-white text-xs font-bold rounded-xl border border-slate-300 dark:border-slate-700 hover:border-violet-500 transition-all flex items-center justify-center gap-1.5 shadow-md"
             >
               <BookOpen className="w-3.5 h-3.5" />
               Assign Curriculum Review
@@ -367,7 +367,7 @@ export const BureauExpertsPage: React.FC = () => {
                 </button>
                 <button
                   type="submit"
-                  className="px-5 py-2 bg-gradient-to-r from-violet-600 to-indigo-600 hover:from-violet-500 hover:to-indigo-500 text-slate-900 dark:text-white text-xs font-bold rounded-xl shadow-lg flex items-center gap-1.5"
+                  className="px-5 py-2 bg-gradient-to-r from-violet-600 to-indigo-600 hover:from-violet-500 hover:to-indigo-500 text-white text-xs font-bold rounded-xl shadow-lg flex items-center gap-1.5"
                 >
                   <UserCheck className="w-4 h-4" /> Empanel Subject Expert
                 </button>
@@ -449,7 +449,7 @@ export const BureauExpertsPage: React.FC = () => {
                 </button>
                 <button
                   type="submit"
-                  className="px-5 py-2 bg-gradient-to-r from-indigo-600 to-violet-600 hover:from-indigo-500 hover:to-violet-500 text-slate-900 dark:text-white text-xs font-bold rounded-xl shadow-lg flex items-center gap-1.5"
+                  className="px-5 py-2 bg-gradient-to-r from-indigo-600 to-violet-600 hover:from-indigo-500 hover:to-violet-500 text-white text-xs font-bold rounded-xl shadow-lg flex items-center gap-1.5"
                 >
                   <Send className="w-4 h-4" /> Confirm Assignment
                 </button>
