@@ -182,22 +182,24 @@ export const useCurriculumStore = create<CurriculumState>((set, get) => ({
     set({ isLoading: true, error: null });
     try {
       const res = await api.get('/curricula', { params });
-      if (res.data.success && Array.isArray(res.data.data) && res.data.data.length > 0) {
+      if (res.data && res.data.success && Array.isArray(res.data.data) && res.data.data.length > 0) {
         set({
           curricula: res.data.data,
           activeCurriculum: res.data.data[0],
           isLoading: false,
         });
-      } else {
-        set({ curricula: defaultDemoCurricula, activeCurriculum: defaultDemoCurricula[0], isLoading: false });
+        return;
       }
     } catch {
-      set({
-        curricula: defaultDemoCurricula,
-        activeCurriculum: get().activeCurriculum || defaultDemoCurricula[0],
-        isLoading: false,
-      });
+      // Fallback
     }
+
+    const currentList = get().curricula;
+    set({
+      curricula: currentList && currentList.length > 0 ? currentList : defaultDemoCurricula,
+      activeCurriculum: get().activeCurriculum || defaultDemoCurricula[0],
+      isLoading: false,
+    });
   },
 
   fetchCurriculumById: async (id) => {

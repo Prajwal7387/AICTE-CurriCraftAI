@@ -15,9 +15,11 @@ import {
   ArrowRight,
   Zap,
 } from 'lucide-react';
+import { useNavigate } from 'react-router-dom';
 import { api } from '../../services/api';
 
 export const CurriculumWorkspacePage: React.FC = () => {
+  const navigate = useNavigate();
   const { activeCurriculum, updateActiveCurriculum, fetchCurricula, curricula, setActiveCurriculum } =
     useCurriculumStore();
 
@@ -235,16 +237,21 @@ export const CurriculumWorkspacePage: React.FC = () => {
 
   const handleSubmitForReview = async () => {
     if (!activeCurriculum) return;
+    const updated = { ...activeCurriculum, status: 'SUBMITTED' as const };
+    await updateActiveCurriculum(updated);
+    triggerSaveNotification('Submitted for AICTE Bureau Review!');
+
     try {
       if (activeCurriculum._id) {
         await api.post(`/reviews/submit/${activeCurriculum._id}`);
       }
     } catch (err) {
       console.warn('Submission API note:', err);
-    } finally {
-      updateActiveCurriculum({ status: 'SUBMITTED' });
-      triggerSaveNotification('Submitted for AICTE Bureau Review!');
     }
+
+    setTimeout(() => {
+      navigate('/review');
+    }, 800);
   };
 
   const triggerSaveNotification = (msg: string) => {

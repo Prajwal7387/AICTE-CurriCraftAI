@@ -72,7 +72,7 @@ export const ReviewWorkflowPage: React.FC = () => {
     setFeedbackText('');
   };
 
-  const pendingCurricula = curricula.filter((c) => c.status === 'SUBMITTED' || c.status === 'UNDER_REVIEW' || c.status === 'DRAFT');
+  const pendingCurricula = curricula.filter((c) => c.status === 'SUBMITTED' || c.status === 'UNDER_REVIEW');
   const deniedCurricula = curricula.filter((c) => c.status === 'CHANGES_REQUESTED');
   const approvedCurricula = curricula.filter((c) => c.status === 'APPROVED');
   const publishedCurricula = curricula.filter((c) => c.status === 'PUBLISHED');
