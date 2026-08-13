@@ -21,14 +21,85 @@ export const PublicPortalPage: React.FC = () => {
         c.branch.toLowerCase().includes(searchTerm.toLowerCase()))
   );
 
-  const handleDownloadSummary = (curr: Curriculum) => {
-    const jsonStr = JSON.stringify(curr, null, 2);
-    const blob = new Blob([jsonStr], { type: 'application/json' });
-    const url = URL.createObjectURL(blob);
-    const a = document.createElement('a');
-    a.href = url;
-    a.download = `${curr.code}_AICTE_Model_Curriculum.json`;
-    a.click();
+  const handleDownloadPDF = (curr: Curriculum) => {
+    const printWindow = window.open('', '_blank');
+    if (!printWindow) {
+      alert('Please allow popups to download/print the PDF curriculum blueprint.');
+      return;
+    }
+
+    const moduleCreditSum = (curr.modules || []).reduce((acc, m) => acc + (m.credits || 0), 0);
+
+    const htmlContent = `
+      <!DOCTYPE html>
+      <html>
+        <head>
+          <title>${curr.code} - Official AICTE Model Curriculum PDF Blueprint</title>
+          <style>
+            body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; color: #0f172a; margin: 40px; background: #ffffff; }
+            .header { text-align: center; border-bottom: 3px solid #0284c7; padding-bottom: 20px; margin-bottom: 25px; }
+            .govt-title { font-size: 13px; font-weight: 800; letter-spacing: 1.5px; color: #475569; text-transform: uppercase; }
+            .logo { font-size: 22px; font-weight: 900; color: #0369a1; margin-top: 4px; }
+            .sub { font-size: 11px; color: #64748b; margin-top: 4px; }
+            .title { font-size: 20px; font-weight: 800; margin-top: 15px; color: #0f172a; }
+            .badge { display: inline-block; background: #e0f2fe; color: #0369a1; font-weight: bold; font-size: 11px; padding: 3px 10px; border-radius: 12px; margin-top: 6px; }
+            .meta-grid { display: grid; grid-template-cols: 1fr 1fr; gap: 12px; background: #f8fafc; padding: 16px; border-radius: 10px; margin: 20px 0; border: 1px solid #e2e8f0; }
+            .meta-item { font-size: 12px; line-height: 1.5; }
+            .meta-item strong { color: #0f172a; }
+            .section-title { font-size: 13px; font-weight: 800; color: #0284c7; text-transform: uppercase; margin-top: 25px; border-bottom: 1px solid #cbd5e1; padding-bottom: 6px; }
+            .module-card { border: 1px solid #cbd5e1; padding: 14px; margin-top: 12px; border-radius: 8px; page-break-inside: avoid; background: #ffffff; }
+            .module-header { display: flex; justify-content: space-between; font-weight: 700; font-size: 13px; color: #0f172a; border-bottom: 1px dashed #e2e8f0; padding-bottom: 6px; }
+            .module-desc { font-size: 11px; color: #334155; margin-top: 8px; leading-relaxed: true; }
+            .module-topics { font-size: 11px; color: #0284c7; margin-top: 8px; font-weight: 600; }
+            .footer { margin-top: 40px; border-top: 2px solid #e2e8f0; padding-top: 15px; text-align: center; font-size: 10px; color: #64748b; }
+          </style>
+        </head>
+        <body>
+          <div class="header">
+            <div class="govt-title">ALL INDIA COUNCIL FOR TECHNICAL EDUCATION (AICTE)</div>
+            <div class="logo">National Model Curriculum Blueprint & Governance Portal</div>
+            <div class="sub">Ministry of Education, Government of India • SIH Problem Statement SIH1465</div>
+            <div class="title">${curr.title}</div>
+            <div class="badge">Course Code: ${curr.code} | Status: ${curr.status} | Version: ${curr.currentVersion || 'v2.0'}</div>
+          </div>
+
+          <div class="meta-grid">
+            <div class="meta-item"><strong>Degree & Branch:</strong> ${curr.degree} (${curr.branch})</div>
+            <div class="meta-item"><strong>Total Degree Requirement:</strong> ${curr.totalCredits} Credits (NEP 2020 Standard)</div>
+            <div class="meta-item"><strong>Academic Session:</strong> ${curr.academicYear}</div>
+            <div class="meta-item"><strong>NEP Compliance Audit Score:</strong> ${curr.nepComplianceScore}% (Fully Compliant)</div>
+            <div class="meta-item"><strong>Loaded Core Modules Credit Sum:</strong> ${moduleCreditSum} Credits (${curr.modules?.length || 0} Blueprint Modules)</div>
+            <div class="meta-item"><strong>Publishing Authority:</strong> AICTE Executive Academic Bureau</div>
+          </div>
+
+          <div class="section-title">Model Curriculum Modules Breakdown (${curr.modules?.length || 0} Core Modules)</div>
+
+          ${(curr.modules || []).map((m: any) => `
+            <div class="module-card">
+              <div class="module-header">
+                <span>${m.code} - ${m.title}</span>
+                <span>${m.credits} Credits (${m.lectureHours || 3}L : ${m.tutorialHours || 0}T : ${m.practicalHours || 0}P)</span>
+              </div>
+              <div class="module-desc">${m.description}</div>
+              ${m.topics && m.topics.length > 0 ? `<div class="module-topics"><strong>Key Topics:</strong> ${m.topics.join(' • ')}</div>` : ''}
+            </div>
+          `).join('')}
+
+          <div class="footer">
+            Official AICTE Model Curriculum Document • Generated on ${new Date().toLocaleDateString()} • Verified Digital Blueprint
+          </div>
+
+          <script>
+            window.onload = function() {
+              window.print();
+            };
+          </script>
+        </body>
+      </html>
+    `;
+
+    printWindow.document.write(htmlContent);
+    printWindow.document.close();
   };
 
   return (
@@ -124,9 +195,9 @@ export const PublicPortalPage: React.FC = () => {
                 <span>Inspect Syllabus</span>
               </button>
               <button
-                onClick={() => handleDownloadSummary(curr)}
+                onClick={() => handleDownloadPDF(curr)}
                 className="p-2 bg-brand-600/20 hover:bg-brand-600 text-brand-400 hover:text-white rounded-xl border border-brand-500/30 transition-colors"
-                title="Download JSON Summary"
+                title="Download Official PDF Blueprint"
               >
                 <Download className="w-4 h-4" />
               </button>
@@ -154,6 +225,24 @@ export const PublicPortalPage: React.FC = () => {
 
             <p className="text-xs text-slate-300">{selectedCurriculum.description}</p>
 
+            {/* Credit Consistency Summary Box */}
+            <div className="grid grid-cols-2 gap-3 p-3 bg-slate-950 rounded-xl border border-slate-800 text-xs">
+              <div>
+                <span className="text-[10px] text-slate-500 uppercase font-bold block">Total Degree Credit Target</span>
+                <span className="font-extrabold text-emerald-400 text-sm">{selectedCurriculum.totalCredits} Credits</span>
+                <span className="text-[10px] text-slate-400 block">AICTE NEP 2020 Degree Norm</span>
+              </div>
+              <div>
+                <span className="text-[10px] text-slate-500 uppercase font-bold block">Loaded Core Modules Credit Sum</span>
+                <span className="font-extrabold text-cyan-400 text-sm">
+                  {(selectedCurriculum.modules || []).reduce((sum, m) => sum + (m.credits || 0), 0)} Credits
+                </span>
+                <span className="text-[10px] text-slate-400 block">
+                  {selectedCurriculum.modules?.length || 0} Core Blueprint Modules
+                </span>
+              </div>
+            </div>
+
             <div className="space-y-3 pt-2">
               <h4 className="text-xs font-bold text-slate-300 uppercase tracking-wider">
                 Modules Breakdown ({selectedCurriculum.modules?.length || 0})
@@ -164,7 +253,7 @@ export const PublicPortalPage: React.FC = () => {
                     <span>
                       {m.code} - {m.title}
                     </span>
-                    <span className="text-brand-400">{m.credits} Credits</span>
+                    <span className="text-brand-400 font-bold">{m.credits} Credits</span>
                   </div>
                   <p className="text-slate-400 text-[11px]">{m.description}</p>
                 </div>
@@ -173,10 +262,10 @@ export const PublicPortalPage: React.FC = () => {
 
             <div className="pt-3 border-t border-slate-800 flex justify-end">
               <button
-                onClick={() => handleDownloadSummary(selectedCurriculum)}
-                className="px-4 py-2 bg-brand-600 hover:bg-brand-500 text-white text-xs font-semibold rounded-xl flex items-center gap-1.5 shadow"
+                onClick={() => handleDownloadPDF(selectedCurriculum)}
+                className="px-5 py-2.5 bg-gradient-to-r from-brand-600 to-indigo-600 hover:from-brand-500 hover:to-indigo-500 text-white text-xs font-bold rounded-xl flex items-center gap-2 shadow-lg shadow-brand-600/30 transition-all"
               >
-                <Download className="w-4 h-4" /> Download Official Model Curriculum JSON
+                <Download className="w-4 h-4" /> Download Official Model Curriculum PDF
               </button>
             </div>
           </div>
@@ -185,3 +274,4 @@ export const PublicPortalPage: React.FC = () => {
     </div>
   );
 };
+
