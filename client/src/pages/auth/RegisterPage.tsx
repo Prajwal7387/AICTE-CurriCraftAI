@@ -23,8 +23,8 @@ export const RegisterPage: React.FC = () => {
   return (
     <div className="space-y-4">
       <div>
-        <h2 className="text-xl font-bold text-white">Create AICTE Expert Account</h2>
-        <p className="text-xs text-slate-400 mt-1">Register to author model curricula</p>
+        <h2 className="text-xl font-bold text-slate-900 dark:text-white">Create AICTE Expert Account</h2>
+        <p className="text-xs text-slate-600 dark:text-slate-400 mt-1">Register to author model curricula</p>
       </div>
 
       {error && (
@@ -35,7 +35,7 @@ export const RegisterPage: React.FC = () => {
 
       <form onSubmit={handleSubmit} className="space-y-3">
         <div>
-          <label className="block text-xs font-medium text-slate-300 mb-1">Full Name</label>
+          <label className="block text-xs font-medium text-slate-800 dark:text-slate-300 mb-1">Full Name</label>
           <div className="relative">
             <UserIcon className="w-4 h-4 text-slate-500 absolute left-3 top-3" />
             <input
@@ -43,14 +43,14 @@ export const RegisterPage: React.FC = () => {
               value={name}
               onChange={(e) => setName(e.target.value)}
               required
-              className="w-full pl-9 pr-3 py-2 bg-slate-950 border border-slate-800 rounded-lg text-sm text-white focus:outline-none focus:border-brand-500"
+              className="w-full pl-9 pr-3 py-2 bg-white dark:bg-slate-950 border border-slate-200 dark:border-slate-800 rounded-lg text-sm text-slate-900 dark:text-white focus:outline-none focus:border-brand-500"
               placeholder="Prof. Ramesh Kumar"
             />
           </div>
         </div>
 
         <div>
-          <label className="block text-xs font-medium text-slate-300 mb-1">Email Address</label>
+          <label className="block text-xs font-medium text-slate-800 dark:text-slate-300 mb-1">Email Address</label>
           <div className="relative">
             <Mail className="w-4 h-4 text-slate-500 absolute left-3 top-3" />
             <input
@@ -58,14 +58,14 @@ export const RegisterPage: React.FC = () => {
               value={email}
               onChange={(e) => setEmail(e.target.value)}
               required
-              className="w-full pl-9 pr-3 py-2 bg-slate-950 border border-slate-800 rounded-lg text-sm text-white focus:outline-none focus:border-brand-500"
+              className="w-full pl-9 pr-3 py-2 bg-white dark:bg-slate-950 border border-slate-200 dark:border-slate-800 rounded-lg text-sm text-slate-900 dark:text-white focus:outline-none focus:border-brand-500"
               placeholder="ramesh@iit.ac.in"
             />
           </div>
         </div>
 
         <div>
-          <label className="block text-xs font-medium text-slate-300 mb-1">Password</label>
+          <label className="block text-xs font-medium text-slate-800 dark:text-slate-300 mb-1">Password</label>
           <div className="relative">
             <Lock className="w-4 h-4 text-slate-500 absolute left-3 top-3" />
             <input
@@ -73,20 +73,20 @@ export const RegisterPage: React.FC = () => {
               value={password}
               onChange={(e) => setPassword(e.target.value)}
               required
-              className="w-full pl-9 pr-3 py-2 bg-slate-950 border border-slate-800 rounded-lg text-sm text-white focus:outline-none focus:border-brand-500"
+              className="w-full pl-9 pr-3 py-2 bg-white dark:bg-slate-950 border border-slate-200 dark:border-slate-800 rounded-lg text-sm text-slate-900 dark:text-white focus:outline-none focus:border-brand-500"
               placeholder="••••••••"
             />
           </div>
         </div>
 
         <div>
-          <label className="block text-xs font-medium text-slate-300 mb-1">Requested Portal Role</label>
+          <label className="block text-xs font-medium text-slate-800 dark:text-slate-300 mb-1">Requested Portal Role</label>
           <div className="relative">
             <Building className="w-4 h-4 text-slate-500 absolute left-3 top-3" />
             <select
               value={role}
               onChange={(e) => setRole(e.target.value as UserRole)}
-              className="w-full pl-9 pr-3 py-2 bg-slate-950 border border-slate-800 rounded-lg text-sm text-white focus:outline-none focus:border-brand-500"
+              className="w-full pl-9 pr-3 py-2 bg-white dark:bg-slate-950 border border-slate-200 dark:border-slate-800 rounded-lg text-sm text-slate-900 dark:text-white focus:outline-none focus:border-brand-500"
             >
               <option value="EXPERT">Curriculum Expert</option>
               <option value="REVIEWER">Reviewer Committee Member</option>
@@ -99,14 +99,14 @@ export const RegisterPage: React.FC = () => {
         <button
           type="submit"
           disabled={isLoading}
-          className="w-full py-2.5 bg-brand-600 hover:bg-brand-500 text-white text-sm font-semibold rounded-lg transition-colors flex items-center justify-center space-x-2 shadow-lg shadow-brand-600/25"
+          className="w-full py-2.5 bg-brand-600 hover:bg-brand-500 text-slate-900 dark:text-white text-sm font-semibold rounded-lg transition-colors flex items-center justify-center space-x-2 shadow-lg shadow-brand-600/25"
         >
           <span>{isLoading ? 'Registering...' : 'Create Account'}</span>
           <ArrowRight className="w-4 h-4" />
         </button>
       </form>
 
-      <div className="text-center text-xs text-slate-400">
+      <div className="text-center text-xs text-slate-600 dark:text-slate-400">
         Already registered?{' '}
         <Link to="/login" className="text-brand-400 font-semibold hover:underline">
           Sign In

@@ -111,15 +111,15 @@ export const PublicPortalPage: React.FC = () => {
             <Globe className="w-4 h-4 text-emerald-400" />
             <span>AICTE National Public Model Curriculum Repository</span>
           </div>
-          <h1 className="text-2xl font-bold text-white tracking-tight">Public Model Curriculum Portal</h1>
-          <p className="text-xs text-slate-300 mt-1 max-w-2xl">
+          <h1 className="text-2xl font-bold text-slate-900 dark:text-white tracking-tight">Public Model Curriculum Portal</h1>
+          <p className="text-xs text-slate-800 dark:text-slate-300 mt-1 max-w-2xl">
             Browse, inspect, and download official AICTE unified model engineering curricula for state universities and technical institutions.
           </p>
         </div>
       </div>
 
       {/* Search & Filter Bar */}
-      <div className="bg-slate-900/80 border border-slate-800 rounded-2xl p-4 flex flex-col md:flex-row md:items-center justify-between gap-4">
+      <div className="bg-slate-50/80 dark:bg-slate-900/80 border border-slate-200 dark:border-slate-800 rounded-2xl p-4 flex flex-col md:flex-row md:items-center justify-between gap-4">
         <div className="relative flex-1">
           <Search className="w-4 h-4 text-slate-500 absolute left-3 top-3" />
           <input
@@ -127,19 +127,19 @@ export const PublicPortalPage: React.FC = () => {
             placeholder="Search by degree, branch, course code, or title..."
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)}
-            className="w-full pl-9 pr-3 py-2 bg-slate-950 border border-slate-800 rounded-xl text-xs text-white focus:outline-none focus:border-brand-500"
+            className="w-full pl-9 pr-3 py-2 bg-white dark:bg-slate-950 border border-slate-200 dark:border-slate-800 rounded-xl text-xs text-slate-900 dark:text-white focus:outline-none focus:border-brand-500"
           />
         </div>
 
         <div className="flex items-center space-x-3">
-          <div className="flex items-center space-x-2 text-xs text-slate-400">
+          <div className="flex items-center space-x-2 text-xs text-slate-600 dark:text-slate-400">
             <Filter className="w-3.5 h-3.5" />
             <span>Branch:</span>
           </div>
           <select
             value={selectedBranch}
             onChange={(e) => setSelectedBranch(e.target.value)}
-            className="px-3 py-2 bg-slate-950 border border-slate-800 rounded-xl text-xs text-white focus:outline-none focus:border-brand-500"
+            className="px-3 py-2 bg-white dark:bg-slate-950 border border-slate-200 dark:border-slate-800 rounded-xl text-xs text-slate-900 dark:text-white focus:outline-none focus:border-brand-500"
           >
             <option value="ALL">All Engineering Branches</option>
             <option value="Computer Science & Engineering">Computer Science & Eng</option>
@@ -155,7 +155,7 @@ export const PublicPortalPage: React.FC = () => {
         {publishedCurricula.map((curr) => (
           <div
             key={curr._id}
-            className="bg-slate-900/80 border border-slate-800 hover:border-brand-500/40 rounded-2xl p-5 flex flex-col justify-between space-y-4 transition-all hover:shadow-xl group"
+            className="bg-slate-50/80 dark:bg-slate-900/80 border border-slate-200 dark:border-slate-800 hover:border-brand-500/40 rounded-2xl p-5 flex flex-col justify-between space-y-4 transition-all hover:shadow-xl group"
           >
             <div>
               <div className="flex items-center justify-between text-xs mb-2">
@@ -167,21 +167,21 @@ export const PublicPortalPage: React.FC = () => {
                 </span>
               </div>
 
-              <h3 className="text-base font-bold text-white group-hover:text-brand-300 transition-colors leading-snug">
+              <h3 className="text-base font-bold text-slate-900 dark:text-white group-hover:text-brand-300 transition-colors leading-snug">
                 {curr.title}
               </h3>
-              <p className="text-xs text-slate-400 mt-2 line-clamp-2">{curr.description}</p>
+              <p className="text-xs text-slate-600 dark:text-slate-400 mt-2 line-clamp-2">{curr.description}</p>
 
-              <div className="grid grid-cols-2 gap-2 mt-4 pt-3 border-t border-slate-800 text-xs text-slate-300">
+              <div className="grid grid-cols-2 gap-2 mt-4 pt-3 border-t border-slate-200 dark:border-slate-800 text-xs text-slate-800 dark:text-slate-300">
                 <div>
                   <span className="text-slate-500 text-[10px] block">Degree & Branch</span>
-                  <span className="font-semibold text-white">{curr.degree}</span>
-                  <span className="text-slate-400 text-[11px] block truncate">{curr.branch}</span>
+                  <span className="font-semibold text-slate-900 dark:text-white">{curr.degree}</span>
+                  <span className="text-slate-600 dark:text-slate-400 text-[11px] block truncate">{curr.branch}</span>
                 </div>
                 <div>
                   <span className="text-slate-500 text-[10px] block">Total Credits</span>
                   <span className="font-semibold text-emerald-400">{curr.totalCredits} Credits</span>
-                  <span className="text-slate-400 text-[11px] block">NEP Score: {curr.nepComplianceScore}%</span>
+                  <span className="text-slate-600 dark:text-slate-400 text-[11px] block">NEP Score: {curr.nepComplianceScore}%</span>
                 </div>
               </div>
             </div>
@@ -189,14 +189,14 @@ export const PublicPortalPage: React.FC = () => {
             <div className="flex items-center space-x-2 pt-2">
               <button
                 onClick={() => setSelectedCurriculum(curr)}
-                className="flex-1 py-2 bg-slate-800 hover:bg-slate-700 text-slate-200 text-xs font-semibold rounded-xl border border-slate-700 flex items-center justify-center space-x-1.5 transition-colors"
+                className="flex-1 py-2 bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:bg-slate-700 text-slate-900 dark:text-slate-200 text-xs font-semibold rounded-xl border border-slate-300 dark:border-slate-700 flex items-center justify-center space-x-1.5 transition-colors"
               >
                 <BookOpen className="w-3.5 h-3.5 text-brand-400" />
                 <span>Inspect Syllabus</span>
               </button>
               <button
                 onClick={() => handleDownloadPDF(curr)}
-                className="p-2 bg-brand-600/20 hover:bg-brand-600 text-brand-400 hover:text-white rounded-xl border border-brand-500/30 transition-colors"
+                className="p-2 bg-brand-600/20 hover:bg-brand-600 text-brand-400 hover:text-slate-900 dark:text-white rounded-xl border border-brand-500/30 transition-colors"
                 title="Download Official PDF Blueprint"
               >
                 <Download className="w-4 h-4" />
@@ -208,62 +208,62 @@ export const PublicPortalPage: React.FC = () => {
 
       {/* Modal Inspector for Public Curriculum Detail */}
       {selectedCurriculum && (
-        <div className="fixed inset-0 z-50 bg-slate-950/80 backdrop-blur-md flex items-center justify-center p-4">
-          <div className="bg-slate-900 border border-slate-800 rounded-2xl p-6 max-w-2xl w-full max-h-[85vh] overflow-y-auto space-y-4 shadow-2xl">
-            <div className="flex items-center justify-between border-b border-slate-800 pb-3">
+        <div className="fixed inset-0 z-50 bg-white/80 dark:bg-slate-950/80 backdrop-blur-md flex items-center justify-center p-4">
+          <div className="bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl p-6 max-w-2xl w-full max-h-[85vh] overflow-y-auto space-y-4 shadow-2xl">
+            <div className="flex items-center justify-between border-b border-slate-200 dark:border-slate-800 pb-3">
               <div>
                 <span className="font-mono text-xs font-bold text-brand-400">{selectedCurriculum.code}</span>
-                <h3 className="text-lg font-bold text-white">{selectedCurriculum.title}</h3>
+                <h3 className="text-lg font-bold text-slate-900 dark:text-white">{selectedCurriculum.title}</h3>
               </div>
               <button
                 onClick={() => setSelectedCurriculum(null)}
-                className="text-slate-400 hover:text-white text-sm font-bold"
+                className="text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:text-white text-sm font-bold"
               >
                 ✕ Close
               </button>
             </div>
 
-            <p className="text-xs text-slate-300">{selectedCurriculum.description}</p>
+            <p className="text-xs text-slate-800 dark:text-slate-300">{selectedCurriculum.description}</p>
 
             {/* Credit Consistency Summary Box */}
-            <div className="grid grid-cols-2 gap-3 p-3 bg-slate-950 rounded-xl border border-slate-800 text-xs">
+            <div className="grid grid-cols-2 gap-3 p-3 bg-white dark:bg-slate-950 rounded-xl border border-slate-200 dark:border-slate-800 text-xs">
               <div>
                 <span className="text-[10px] text-slate-500 uppercase font-bold block">Total Degree Credit Target</span>
                 <span className="font-extrabold text-emerald-400 text-sm">{selectedCurriculum.totalCredits} Credits</span>
-                <span className="text-[10px] text-slate-400 block">AICTE NEP 2020 Degree Norm</span>
+                <span className="text-[10px] text-slate-600 dark:text-slate-400 block">AICTE NEP 2020 Degree Norm</span>
               </div>
               <div>
                 <span className="text-[10px] text-slate-500 uppercase font-bold block">Loaded Core Modules Credit Sum</span>
                 <span className="font-extrabold text-cyan-400 text-sm">
                   {(selectedCurriculum.modules || []).reduce((sum, m) => sum + (m.credits || 0), 0)} Credits
                 </span>
-                <span className="text-[10px] text-slate-400 block">
+                <span className="text-[10px] text-slate-600 dark:text-slate-400 block">
                   {selectedCurriculum.modules?.length || 0} Core Blueprint Modules
                 </span>
               </div>
             </div>
 
             <div className="space-y-3 pt-2">
-              <h4 className="text-xs font-bold text-slate-300 uppercase tracking-wider">
+              <h4 className="text-xs font-bold text-slate-800 dark:text-slate-300 uppercase tracking-wider">
                 Modules Breakdown ({selectedCurriculum.modules?.length || 0})
               </h4>
               {(selectedCurriculum.modules || []).map((m, idx) => (
-                <div key={idx} className="p-3 bg-slate-950 border border-slate-800 rounded-xl space-y-1 text-xs">
-                  <div className="flex items-center justify-between font-semibold text-white">
+                <div key={idx} className="p-3 bg-white dark:bg-slate-950 border border-slate-200 dark:border-slate-800 rounded-xl space-y-1 text-xs">
+                  <div className="flex items-center justify-between font-semibold text-slate-900 dark:text-white">
                     <span>
                       {m.code} - {m.title}
                     </span>
                     <span className="text-brand-400 font-bold">{m.credits} Credits</span>
                   </div>
-                  <p className="text-slate-400 text-[11px]">{m.description}</p>
+                  <p className="text-slate-600 dark:text-slate-400 text-[11px]">{m.description}</p>
                 </div>
               ))}
             </div>
 
-            <div className="pt-3 border-t border-slate-800 flex justify-end">
+            <div className="pt-3 border-t border-slate-200 dark:border-slate-800 flex justify-end">
               <button
                 onClick={() => handleDownloadPDF(selectedCurriculum)}
-                className="px-5 py-2.5 bg-gradient-to-r from-brand-600 to-indigo-600 hover:from-brand-500 hover:to-indigo-500 text-white text-xs font-bold rounded-xl flex items-center gap-2 shadow-lg shadow-brand-600/30 transition-all"
+                className="px-5 py-2.5 bg-gradient-to-r from-brand-600 to-indigo-600 hover:from-brand-500 hover:to-indigo-500 text-slate-900 dark:text-white text-xs font-bold rounded-xl flex items-center gap-2 shadow-lg shadow-brand-600/30 transition-all"
               >
                 <Download className="w-4 h-4" /> Download Official Model Curriculum PDF
               </button>

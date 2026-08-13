@@ -154,19 +154,19 @@ export const ResourceHubPage: React.FC = () => {
   return (
     <div className="space-y-6">
       {/* Header Banner */}
-      <div className="bg-gradient-to-r from-violet-900 via-slate-900 to-indigo-950 border border-slate-800 rounded-3xl p-6 shadow-2xl space-y-2">
+      <div className="bg-gradient-to-r from-violet-900 via-slate-900 to-indigo-950 border border-slate-200 dark:border-slate-800 rounded-3xl p-6 shadow-2xl space-y-2">
         <div className="inline-flex items-center space-x-2 px-3 py-1 rounded-full bg-violet-500/15 border border-violet-500/30 text-violet-300 text-xs font-bold">
           <BookMarked className="w-3.5 h-3.5 text-cyan-400" />
           <span>Official AICTE Educational Resource Recommendation Service</span>
         </div>
-        <h1 className="text-3xl font-black text-white tracking-tight">Open Educational Resources & Course Guides Hub</h1>
-        <p className="text-xs text-slate-300 max-w-3xl leading-relaxed">
+        <h1 className="text-3xl font-black text-slate-900 dark:text-white tracking-tight">Open Educational Resources & Course Guides Hub</h1>
+        <p className="text-xs text-slate-800 dark:text-slate-300 max-w-3xl leading-relaxed">
           Curated GitHub reference repositories, course guides, NPTEL video lectures, SWAYAM credit courses, and open textbooks mapped directly to AICTE model curricula modules.
         </p>
       </div>
 
       {/* Controls & Filter Bar */}
-      <div className="bg-slate-900/80 border border-slate-800 p-4 rounded-2xl flex flex-col md:flex-row items-center justify-between gap-4">
+      <div className="bg-slate-50/80 dark:bg-slate-900/80 border border-slate-200 dark:border-slate-800 p-4 rounded-2xl flex flex-col md:flex-row items-center justify-between gap-4">
         {/* Search */}
         <div className="relative w-full md:w-96">
           <Search className="w-4 h-4 text-slate-500 absolute left-3.5 top-3" />
@@ -175,7 +175,7 @@ export const ResourceHubPage: React.FC = () => {
             placeholder="Search by course code, GitHub repo, NPTEL, or topic..."
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)}
-            className="w-full pl-9 pr-3 py-2 bg-slate-950 border border-slate-800 rounded-xl text-xs text-white focus:outline-none focus:border-violet-500"
+            className="w-full pl-9 pr-3 py-2 bg-white dark:bg-slate-950 border border-slate-200 dark:border-slate-800 rounded-xl text-xs text-slate-900 dark:text-white focus:outline-none focus:border-violet-500"
           />
         </div>
 
@@ -184,7 +184,7 @@ export const ResourceHubPage: React.FC = () => {
           <button
             onClick={() => setSelectedType('ALL')}
             className={`px-3 py-1.5 rounded-xl font-semibold transition-all ${
-              selectedType === 'ALL' ? 'bg-violet-600 text-white font-bold shadow-lg shadow-violet-600/30' : 'bg-slate-950 text-slate-400 border border-slate-800 hover:text-white'
+              selectedType === 'ALL' ? 'bg-violet-600 text-slate-900 dark:text-white font-bold shadow-lg shadow-violet-600/30' : 'bg-white dark:bg-slate-950 text-slate-600 dark:text-slate-400 border border-slate-200 dark:border-slate-800 hover:text-slate-900 dark:text-white'
             }`}
           >
             All Resources ({resources.length})
@@ -192,7 +192,7 @@ export const ResourceHubPage: React.FC = () => {
           <button
             onClick={() => setSelectedType('GITHUB_REPO')}
             className={`px-3 py-1.5 rounded-xl font-semibold transition-all flex items-center space-x-1.5 ${
-              selectedType === 'GITHUB_REPO' ? 'bg-violet-600 text-white font-bold shadow-lg shadow-violet-600/30' : 'bg-slate-950 text-slate-400 border border-slate-800 hover:text-white'
+              selectedType === 'GITHUB_REPO' ? 'bg-violet-600 text-slate-900 dark:text-white font-bold shadow-lg shadow-violet-600/30' : 'bg-white dark:bg-slate-950 text-slate-600 dark:text-slate-400 border border-slate-200 dark:border-slate-800 hover:text-slate-900 dark:text-white'
             }`}
           >
             <GitBranch className="w-3.5 h-3.5 text-violet-400" />
@@ -201,7 +201,7 @@ export const ResourceHubPage: React.FC = () => {
           <button
             onClick={() => setSelectedType('NPTEL')}
             className={`px-3 py-1.5 rounded-xl font-semibold transition-all ${
-              selectedType === 'NPTEL' ? 'bg-blue-600 text-white font-bold shadow-lg shadow-blue-600/30' : 'bg-slate-950 text-slate-400 border border-slate-800 hover:text-white'
+              selectedType === 'NPTEL' ? 'bg-blue-600 text-slate-900 dark:text-white font-bold shadow-lg shadow-blue-600/30' : 'bg-white dark:bg-slate-950 text-slate-600 dark:text-slate-400 border border-slate-200 dark:border-slate-800 hover:text-slate-900 dark:text-white'
             }`}
           >
             NPTEL
@@ -209,7 +209,7 @@ export const ResourceHubPage: React.FC = () => {
           <button
             onClick={() => setSelectedType('SWAYAM')}
             className={`px-3 py-1.5 rounded-xl font-semibold transition-all ${
-              selectedType === 'SWAYAM' ? 'bg-amber-600 text-white font-bold shadow-lg shadow-amber-600/30' : 'bg-slate-950 text-slate-400 border border-slate-800 hover:text-white'
+              selectedType === 'SWAYAM' ? 'bg-amber-600 text-slate-900 dark:text-white font-bold shadow-lg shadow-amber-600/30' : 'bg-white dark:bg-slate-950 text-slate-600 dark:text-slate-400 border border-slate-200 dark:border-slate-800 hover:text-slate-900 dark:text-white'
             }`}
           >
             SWAYAM
@@ -217,7 +217,7 @@ export const ResourceHubPage: React.FC = () => {
           <button
             onClick={() => setSelectedType('OPEN_BOOK')}
             className={`px-3 py-1.5 rounded-xl font-semibold transition-all ${
-              selectedType === 'OPEN_BOOK' ? 'bg-emerald-600 text-white font-bold shadow-lg shadow-emerald-600/30' : 'bg-slate-950 text-slate-400 border border-slate-800 hover:text-white'
+              selectedType === 'OPEN_BOOK' ? 'bg-emerald-600 text-slate-900 dark:text-white font-bold shadow-lg shadow-emerald-600/30' : 'bg-white dark:bg-slate-950 text-slate-600 dark:text-slate-400 border border-slate-200 dark:border-slate-800 hover:text-slate-900 dark:text-white'
             }`}
           >
             Open Books
@@ -227,11 +227,11 @@ export const ResourceHubPage: React.FC = () => {
 
       {/* GitHub Course Guides Highlight Banner */}
       {selectedType === 'ALL' && (
-        <div className="bg-slate-900/60 border border-slate-800/80 rounded-2xl p-4 flex items-center space-x-3 text-xs">
+        <div className="bg-slate-50/60 dark:bg-slate-900/60 border border-slate-200/80 dark:border-slate-800/80 rounded-2xl p-4 flex items-center space-x-3 text-xs">
           <Code className="w-5 h-5 text-violet-400 flex-shrink-0" />
           <div className="flex-1">
-            <span className="font-bold text-white">GitHub Course Guides & Reference Blueprints</span>
-            <p className="text-[11px] text-slate-400">
+            <span className="font-bold text-slate-900 dark:text-white">GitHub Course Guides & Reference Blueprints</span>
+            <p className="text-[11px] text-slate-600 dark:text-slate-400">
               Each AICTE model curriculum course includes an open-source GitHub study repository containing C++/Python code, lab manuals, and Jupyter notebooks.
             </p>
           </div>
@@ -259,24 +259,24 @@ export const ResourceHubPage: React.FC = () => {
               </div>
 
               <div>
-                <h3 className="text-base font-bold text-white group-hover:text-cyan-300 transition-colors leading-snug">
+                <h3 className="text-base font-bold text-slate-900 dark:text-white group-hover:text-cyan-300 transition-colors leading-snug">
                   {res.title}
                 </h3>
-                <p className="text-xs text-slate-400 mt-2 leading-relaxed">{res.description}</p>
+                <p className="text-xs text-slate-600 dark:text-slate-400 mt-2 leading-relaxed">{res.description}</p>
               </div>
 
               {/* Tags / Metadata */}
               {res.tags && res.tags.length > 0 && (
                 <div className="flex flex-wrap gap-1.5 pt-1">
                   {res.tags.map((tag: string, i: number) => (
-                    <span key={i} className="text-[10px] font-medium text-slate-300 bg-slate-950 px-2 py-0.5 rounded border border-slate-800">
+                    <span key={i} className="text-[10px] font-medium text-slate-800 dark:text-slate-300 bg-white dark:bg-slate-950 px-2 py-0.5 rounded border border-slate-200 dark:border-slate-800">
                       #{tag}
                     </span>
                   ))}
                 </div>
               )}
 
-              <div className="pt-2 border-t border-slate-800/80 flex items-center justify-between text-[11px] text-slate-400">
+              <div className="pt-2 border-t border-slate-200/80 dark:border-slate-800/80 flex items-center justify-between text-[11px] text-slate-600 dark:text-slate-400">
                 <span className="italic">Provider: {res.authorOrProvider}</span>
                 {res.stars && (
                   <span className="flex items-center gap-1 text-amber-400 font-bold">
@@ -292,8 +292,8 @@ export const ResourceHubPage: React.FC = () => {
               rel="noopener noreferrer"
               className={`py-2.5 px-4 text-xs font-bold rounded-xl flex items-center justify-center space-x-2 transition-all shadow-lg ${
                 res.type === 'GITHUB_REPO'
-                  ? 'bg-gradient-to-r from-violet-600 to-indigo-600 hover:from-violet-500 hover:to-indigo-500 text-white shadow-violet-600/25'
-                  : 'bg-slate-800 hover:bg-slate-700 text-cyan-300 border border-slate-700'
+                  ? 'bg-gradient-to-r from-violet-600 to-indigo-600 hover:from-violet-500 hover:to-indigo-500 text-slate-900 dark:text-white shadow-violet-600/25'
+                  : 'bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:bg-slate-700 text-cyan-300 border border-slate-300 dark:border-slate-700'
               }`}
             >
               {res.type === 'GITHUB_REPO' ? (

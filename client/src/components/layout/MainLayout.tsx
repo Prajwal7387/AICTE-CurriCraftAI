@@ -6,7 +6,7 @@ import MagicRings from '../ui/MagicRings';
 
 export const MainLayout: React.FC = () => {
   return (
-    <div className="min-h-screen bg-slate-950 bg-radial-grid text-slate-100 flex flex-col relative overflow-hidden">
+    <div className="min-h-screen bg-white dark:bg-slate-950 bg-radial-grid text-slate-100 flex flex-col relative overflow-hidden">
       {/* Subtle Ambient Ring Animation in Layout */}
       <div className="absolute inset-0 pointer-events-none opacity-40 z-0">
         <MagicRings

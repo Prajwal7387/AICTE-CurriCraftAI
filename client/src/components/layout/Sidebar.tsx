@@ -81,7 +81,7 @@ export const Sidebar: React.FC = () => {
   }
 
   return (
-    <aside className="w-64 border-r border-slate-800/80 bg-slate-950/70 backdrop-blur-xl flex flex-col justify-between p-4 hidden md:flex min-h-[calc(100vh-4rem)]">
+    <aside className="w-64 border-r border-slate-200/80 dark:border-slate-800/80 bg-white/70 dark:bg-slate-950/70 backdrop-blur-xl flex flex-col justify-between p-4 hidden md:flex min-h-[calc(100vh-4rem)]">
       <div className="space-y-1">
         <div className="px-3 mb-3 flex items-center justify-between">
           <p className="text-[11px] font-bold text-slate-500 uppercase tracking-wider">
@@ -98,7 +98,7 @@ export const Sidebar: React.FC = () => {
                 `flex items-center space-x-3 px-3 py-2.5 rounded-xl text-sm font-medium transition-all ${
                   isActive
                     ? 'bg-violet-600/20 text-violet-300 border border-violet-500/40 font-bold shadow-inner'
-                    : 'text-slate-400 hover:text-slate-200 hover:bg-slate-900'
+                    : 'text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:text-slate-200 hover:bg-slate-50 dark:bg-slate-900'
                 }`
               }
             >
@@ -110,8 +110,8 @@ export const Sidebar: React.FC = () => {
       </div>
 
       {/* Footer Info Badge */}
-      <div className="p-3.5 bg-slate-900/80 rounded-2xl border border-slate-800 text-xs text-slate-400 space-y-1">
-        <div className="flex items-center justify-between font-bold text-slate-200">
+      <div className="p-3.5 bg-slate-50/80 dark:bg-slate-900/80 rounded-2xl border border-slate-200 dark:border-slate-800 text-xs text-slate-600 dark:text-slate-400 space-y-1">
+        <div className="flex items-center justify-between font-bold text-slate-900 dark:text-slate-200">
           <span>AICTE Model Portal</span>
           <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
         </div>

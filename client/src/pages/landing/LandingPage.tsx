@@ -28,7 +28,7 @@ export const LandingPage: React.FC = () => {
   };
 
   return (
-    <div className="min-h-screen bg-slate-950 bg-radial-grid text-slate-100 flex flex-col relative overflow-hidden">
+    <div className="min-h-screen bg-white dark:bg-slate-950 bg-radial-grid text-slate-100 flex flex-col relative overflow-hidden">
       {/* Background Magic Rings WebGL Animation */}
       <MagicRings
         color="#0284c7"
@@ -41,19 +41,19 @@ export const LandingPage: React.FC = () => {
       />
 
       {/* Top Public Header */}
-      <header className="h-20 border-b border-slate-800/80 bg-slate-950/80 backdrop-blur-xl sticky top-0 z-50 px-6 lg:px-12 flex items-center justify-between shadow-2xl">
+      <header className="h-20 border-b border-slate-200/80 dark:border-slate-800/80 bg-white/80 dark:bg-slate-950/80 backdrop-blur-xl sticky top-0 z-50 px-6 lg:px-12 flex items-center justify-between shadow-2xl">
         <div className="flex items-center space-x-3">
           <Link to="/" className="flex items-center space-x-3 group">
             <div className="w-10 h-10 rounded-xl bg-gradient-to-tr from-violet-600 via-indigo-500 to-cyan-400 p-0.5 animated-logo">
-              <div className="w-full h-full bg-slate-950 rounded-[10px] flex items-center justify-center">
+              <div className="w-full h-full bg-white dark:bg-slate-950 rounded-[10px] flex items-center justify-center">
                 <BookOpen className="w-5 h-5 text-cyan-300" />
               </div>
             </div>
             <div>
-              <span className="font-extrabold text-xl text-white tracking-tight flex items-center gap-2">
+              <span className="font-extrabold text-xl text-slate-900 dark:text-white tracking-tight flex items-center gap-2">
                 CurriCraft <span className="text-[10px] font-bold text-violet-300 uppercase tracking-widest px-2 py-0.5 rounded-full bg-violet-500/15 border border-violet-500/30">AICTE AI</span>
               </span>
-              <p className="text-[11px] text-slate-400 font-medium">Unified AICTE Model Curriculum Portal</p>
+              <p className="text-[11px] text-slate-600 dark:text-slate-400 font-medium">Unified AICTE Model Curriculum Portal</p>
             </div>
           </Link>
         </div>
@@ -61,7 +61,7 @@ export const LandingPage: React.FC = () => {
         <div className="flex items-center space-x-4">
           <Link
             to="/portal"
-            className="hidden sm:inline-flex items-center space-x-1.5 px-4 py-2 rounded-xl text-xs font-semibold text-slate-300 hover:text-white hover:bg-slate-800/60 transition-colors"
+            className="hidden sm:inline-flex items-center space-x-1.5 px-4 py-2 rounded-xl text-xs font-semibold text-slate-800 dark:text-slate-300 hover:text-slate-900 dark:text-white hover:bg-slate-100/60 dark:bg-slate-800/60 transition-colors"
           >
             <Globe className="w-4 h-4 text-emerald-400" />
             <span>Public Model Portal</span>
@@ -69,7 +69,7 @@ export const LandingPage: React.FC = () => {
 
           <Link
             to="/login"
-            className="px-5 py-2.5 bg-gradient-to-r from-violet-600 to-indigo-600 hover:from-violet-500 hover:to-indigo-500 text-white text-xs font-bold rounded-xl shadow-lg shadow-violet-600/30 flex items-center space-x-2 transition-all hover:scale-105"
+            className="px-5 py-2.5 bg-gradient-to-r from-violet-600 to-indigo-600 hover:from-violet-500 hover:to-indigo-500 text-slate-900 dark:text-white text-xs font-bold rounded-xl shadow-lg shadow-violet-600/30 flex items-center space-x-2 transition-all hover:scale-105"
           >
             <span>Sign In to Portal</span>
             <ArrowRight className="w-4 h-4" />
@@ -85,18 +85,18 @@ export const LandingPage: React.FC = () => {
             <span>SIH Problem Statement SIH1465 Solution</span>
           </div>
 
-          <h1 className="text-4xl md:text-6xl font-black text-white tracking-tight leading-tight">
+          <h1 className="text-4xl md:text-6xl font-black text-slate-900 dark:text-white tracking-tight leading-tight">
             Unified AICTE Model Curriculum Portal Powered by <span className="bg-clip-text text-transparent bg-gradient-to-r from-cyan-400 via-violet-400 to-emerald-400">Generative AI</span>
           </h1>
 
-          <p className="text-base md:text-lg text-slate-300 max-w-3xl mx-auto leading-relaxed">
+          <p className="text-base md:text-lg text-slate-800 dark:text-slate-300 max-w-3xl mx-auto leading-relaxed">
             Standardizing national technical engineering education with deterministic NEP 2020 compliance scoring, Bloom's Taxonomy cognitive classification, Git-like version control, and multi-tier AICTE Bureau approval governance.
           </p>
 
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4 pt-4">
             <button
               onClick={() => handleFeatureNavigation('/dashboard')}
-              className="w-full sm:w-auto px-8 py-4 bg-gradient-to-r from-violet-600 via-indigo-600 to-cyan-500 hover:from-violet-500 hover:to-cyan-400 text-white text-sm font-bold rounded-2xl shadow-xl shadow-violet-600/30 flex items-center justify-center space-x-3 transition-all hover:scale-105 cursor-pointer"
+              className="w-full sm:w-auto px-8 py-4 bg-gradient-to-r from-violet-600 via-indigo-600 to-cyan-500 hover:from-violet-500 hover:to-cyan-400 text-slate-900 dark:text-white text-sm font-bold rounded-2xl shadow-xl shadow-violet-600/30 flex items-center justify-center space-x-3 transition-all hover:scale-105 cursor-pointer"
             >
               <span>Explore AICTE Workspace</span>
               <ArrowRight className="w-5 h-5" />
@@ -104,7 +104,7 @@ export const LandingPage: React.FC = () => {
 
             <Link
               to="/portal"
-              className="w-full sm:w-auto px-8 py-4 bg-slate-900/90 hover:bg-slate-800 text-slate-200 text-sm font-bold rounded-2xl border border-slate-700/80 flex items-center justify-center space-x-2 transition-all cursor-pointer"
+              className="w-full sm:w-auto px-8 py-4 bg-slate-50/90 dark:bg-slate-900/90 hover:bg-slate-100 dark:bg-slate-800 text-slate-900 dark:text-slate-200 text-sm font-bold rounded-2xl border border-slate-300/80 dark:border-slate-700/80 flex items-center justify-center space-x-2 transition-all cursor-pointer"
             >
               <Globe className="w-5 h-5 text-emerald-400" />
               <span>Browse Public Model Curricula</span>
@@ -125,8 +125,8 @@ export const LandingPage: React.FC = () => {
               </div>
               <ArrowRight className="w-4 h-4 text-slate-500 group-hover:text-cyan-400 group-hover:translate-x-1 transition-all" />
             </div>
-            <h3 className="text-lg font-bold text-white group-hover:text-cyan-300 transition-colors">NEP 2020 Compliance Engine</h3>
-            <p className="text-xs text-slate-400 leading-relaxed">
+            <h3 className="text-lg font-bold text-slate-900 dark:text-white group-hover:text-cyan-300 transition-colors">NEP 2020 Compliance Engine</h3>
+            <p className="text-xs text-slate-600 dark:text-slate-400 leading-relaxed">
               Deterministic rule-based evaluation of total credit caps, Universal Human Values (UHV), mandatory industry internships, and lab contact hour ratios.
             </p>
             <span className="inline-flex items-center gap-1 text-[11px] font-bold text-violet-400 group-hover:underline pt-1">
@@ -145,8 +145,8 @@ export const LandingPage: React.FC = () => {
               </div>
               <ArrowRight className="w-4 h-4 text-slate-500 group-hover:text-cyan-400 group-hover:translate-x-1 transition-all" />
             </div>
-            <h3 className="text-lg font-bold text-white group-hover:text-cyan-300 transition-colors">Google Gemini AI Synthesis</h3>
-            <p className="text-xs text-slate-400 leading-relaxed">
+            <h3 className="text-lg font-bold text-slate-900 dark:text-white group-hover:text-cyan-300 transition-colors">Google Gemini AI Synthesis</h3>
+            <p className="text-xs text-slate-600 dark:text-slate-400 leading-relaxed">
               Generate structured syllabus modules, rewrite learning outcomes using Bloom taxonomy verbs, and analyze curriculum gaps against industry trends.
             </p>
             <span className="inline-flex items-center gap-1 text-[11px] font-bold text-emerald-400 group-hover:underline pt-1">
@@ -165,8 +165,8 @@ export const LandingPage: React.FC = () => {
               </div>
               <ArrowRight className="w-4 h-4 text-slate-500 group-hover:text-cyan-400 group-hover:translate-x-1 transition-all" />
             </div>
-            <h3 className="text-lg font-bold text-white group-hover:text-cyan-300 transition-colors">Git-Style Version Snapshots</h3>
-            <p className="text-xs text-slate-400 leading-relaxed">
+            <h3 className="text-lg font-bold text-slate-900 dark:text-white group-hover:text-cyan-300 transition-colors">Git-Style Version Snapshots</h3>
+            <p className="text-xs text-slate-600 dark:text-slate-400 leading-relaxed">
               Create curriculum version tags (`v1.0`, `v2.0`), inspect side-by-side diff comparisons, and restore historical snapshots with 1-click simplicity.
             </p>
             <span className="inline-flex items-center gap-1 text-[11px] font-bold text-cyan-400 group-hover:underline pt-1">
@@ -185,8 +185,8 @@ export const LandingPage: React.FC = () => {
               </div>
               <ArrowRight className="w-4 h-4 text-slate-500 group-hover:text-cyan-400 group-hover:translate-x-1 transition-all" />
             </div>
-            <h3 className="text-lg font-bold text-white group-hover:text-cyan-300 transition-colors">AICTE Bureau Governance</h3>
-            <p className="text-xs text-slate-400 leading-relaxed">
+            <h3 className="text-lg font-bold text-slate-900 dark:text-white group-hover:text-cyan-300 transition-colors">AICTE Bureau Governance</h3>
+            <p className="text-xs text-slate-600 dark:text-slate-400 leading-relaxed">
               Multi-tiered review workflows (`DRAFT` → `SUBMITTED` → `APPROVED` → `PUBLISHED`) with peer committee feedback and instant publishing.
             </p>
             <span className="inline-flex items-center gap-1 text-[11px] font-bold text-purple-400 group-hover:underline pt-1">
@@ -205,8 +205,8 @@ export const LandingPage: React.FC = () => {
               </div>
               <ArrowRight className="w-4 h-4 text-slate-500 group-hover:text-cyan-400 group-hover:translate-x-1 transition-all" />
             </div>
-            <h3 className="text-lg font-bold text-white group-hover:text-cyan-300 transition-colors">Public Adoption Portal</h3>
-            <p className="text-xs text-slate-400 leading-relaxed">
+            <h3 className="text-lg font-bold text-slate-900 dark:text-white group-hover:text-cyan-300 transition-colors">Public Adoption Portal</h3>
+            <p className="text-xs text-slate-600 dark:text-slate-400 leading-relaxed">
               Search, filter by branch/degree, inspect module structures, and download official model curriculum JSON blueprints for university adoption.
             </p>
             <span className="inline-flex items-center gap-1 text-[11px] font-bold text-rose-400 group-hover:underline pt-1">
@@ -225,8 +225,8 @@ export const LandingPage: React.FC = () => {
               </div>
               <ArrowRight className="w-4 h-4 text-slate-500 group-hover:text-cyan-400 group-hover:translate-x-1 transition-all" />
             </div>
-            <h3 className="text-lg font-bold text-white group-hover:text-cyan-300 transition-colors">Role-Based Access Control</h3>
-            <p className="text-xs text-slate-400 leading-relaxed">
+            <h3 className="text-lg font-bold text-slate-900 dark:text-white group-hover:text-cyan-300 transition-colors">Role-Based Access Control</h3>
+            <p className="text-xs text-slate-600 dark:text-slate-400 leading-relaxed">
               Configurable RBAC permissions for AICTE Administrators, Bureau Heads, Subject Matter Experts, Peer Reviewers, and Public Viewers.
             </p>
             <span className="inline-flex items-center gap-1 text-[11px] font-bold text-amber-400 group-hover:underline pt-1">
@@ -236,27 +236,27 @@ export const LandingPage: React.FC = () => {
         </div>
 
         {/* Statistics Banner */}
-        <div className="bg-gradient-to-r from-slate-900 via-slate-900 to-slate-950 border border-slate-800 rounded-3xl p-8 shadow-2xl flex flex-col md:flex-row items-center justify-around gap-6 text-center">
+        <div className="bg-gradient-to-r from-slate-900 via-slate-900 to-slate-950 border border-slate-200 dark:border-slate-800 rounded-3xl p-8 shadow-2xl flex flex-col md:flex-row items-center justify-around gap-6 text-center">
           <div>
             <p className="text-4xl font-extrabold text-cyan-400">12+</p>
-            <p className="text-xs font-semibold text-slate-400 uppercase tracking-wider mt-1">Engineering Disciplines</p>
+            <p className="text-xs font-semibold text-slate-600 dark:text-slate-400 uppercase tracking-wider mt-1">Engineering Disciplines</p>
           </div>
-          <div className="hidden md:block w-px h-12 bg-slate-800"></div>
+          <div className="hidden md:block w-px h-12 bg-slate-100 dark:bg-slate-800"></div>
           <div>
             <p className="text-4xl font-extrabold text-emerald-400">100%</p>
-            <p className="text-xs font-semibold text-slate-400 uppercase tracking-wider mt-1">NEP 2020 Alignment</p>
+            <p className="text-xs font-semibold text-slate-600 dark:text-slate-400 uppercase tracking-wider mt-1">NEP 2020 Alignment</p>
           </div>
-          <div className="hidden md:block w-px h-12 bg-slate-800"></div>
+          <div className="hidden md:block w-px h-12 bg-slate-100 dark:bg-slate-800"></div>
           <div>
             <p className="text-4xl font-extrabold text-amber-400">1,500+</p>
-            <p className="text-xs font-semibold text-slate-400 uppercase tracking-wider mt-1">Affiliated Colleges</p>
+            <p className="text-xs font-semibold text-slate-600 dark:text-slate-400 uppercase tracking-wider mt-1">Affiliated Colleges</p>
           </div>
         </div>
       </main>
 
       {/* Footer */}
-      <footer className="border-t border-slate-800/80 bg-slate-950 py-8 px-6 lg:px-12 text-center text-xs text-slate-500 space-y-2 relative z-10">
-        <p className="font-semibold text-slate-400">CurriCraft AI — All India Council for Technical Education (AICTE)</p>
+      <footer className="border-t border-slate-200/80 dark:border-slate-800/80 bg-white dark:bg-slate-950 py-8 px-6 lg:px-12 text-center text-xs text-slate-500 space-y-2 relative z-10">
+        <p className="font-semibold text-slate-600 dark:text-slate-400">CurriCraft AI — All India Council for Technical Education (AICTE)</p>
         <p className="text-[11px] text-slate-600">Smart India Hackathon SIH1465 Prototype Solution • Production Architecture</p>
       </footer>
     </div>

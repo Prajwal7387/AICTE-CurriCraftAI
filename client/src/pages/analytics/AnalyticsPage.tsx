@@ -45,14 +45,14 @@ export const AnalyticsPage: React.FC = () => {
   return (
     <div className="space-y-6">
       {/* Header */}
-      <div className="bg-slate-900 border border-slate-800 rounded-2xl p-5 flex flex-col md:flex-row md:items-center justify-between gap-4">
+      <div className="bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl p-5 flex flex-col md:flex-row md:items-center justify-between gap-4">
         <div>
           <div className="flex items-center space-x-2 text-xs font-semibold text-brand-400 mb-1">
             <BarChart3 className="w-4 h-4 text-brand-400" />
             <span>AICTE National Academic Operations & Adoption Analytics</span>
           </div>
-          <h1 className="text-2xl font-bold text-white tracking-tight">AICTE Curriculum Analytics</h1>
-          <p className="text-xs text-slate-400 mt-1">
+          <h1 className="text-2xl font-bold text-slate-900 dark:text-white tracking-tight">AICTE Curriculum Analytics</h1>
+          <p className="text-xs text-slate-600 dark:text-slate-400 mt-1">
             Real-time visual monitoring of institutional adoption, credit allocation, and NEP compliance scoring.
           </p>
         </div>
@@ -61,8 +61,8 @@ export const AnalyticsPage: React.FC = () => {
       {/* Analytics Charts Grid */}
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-6">
         {/* Compliance Trend Line Chart */}
-        <div className="lg:col-span-6 bg-slate-900/80 border border-slate-800 rounded-2xl p-5 space-y-4">
-          <h3 className="text-sm font-bold text-white flex items-center gap-2">
+        <div className="lg:col-span-6 bg-slate-50/80 dark:bg-slate-900/80 border border-slate-200 dark:border-slate-800 rounded-2xl p-5 space-y-4">
+          <h3 className="text-sm font-bold text-slate-900 dark:text-white flex items-center gap-2">
             <TrendingUp className="w-4 h-4 text-emerald-400" /> NEP 2020 Compliance Trend (2022-2026)
           </h3>
           <div className="h-56">
@@ -82,8 +82,8 @@ export const AnalyticsPage: React.FC = () => {
         </div>
 
         {/* Credit Breakdown Pie Chart */}
-        <div className="lg:col-span-6 bg-slate-900/80 border border-slate-800 rounded-2xl p-5 space-y-4">
-          <h3 className="text-sm font-bold text-white flex items-center gap-2">
+        <div className="lg:col-span-6 bg-slate-50/80 dark:bg-slate-900/80 border border-slate-200 dark:border-slate-800 rounded-2xl p-5 space-y-4">
+          <h3 className="text-sm font-bold text-slate-900 dark:text-white flex items-center gap-2">
             <PieIcon className="w-4 h-4 text-brand-400" /> Recommended Credit Ratio Breakdown
           </h3>
           <div className="h-56">
@@ -112,8 +112,8 @@ export const AnalyticsPage: React.FC = () => {
         </div>
 
         {/* State Adoption Bar Chart */}
-        <div className="lg:col-span-12 bg-slate-900/80 border border-slate-800 rounded-2xl p-5 space-y-4">
-          <h3 className="text-sm font-bold text-white flex items-center gap-2">
+        <div className="lg:col-span-12 bg-slate-50/80 dark:bg-slate-900/80 border border-slate-200 dark:border-slate-800 rounded-2xl p-5 space-y-4">
+          <h3 className="text-sm font-bold text-slate-900 dark:text-white flex items-center gap-2">
             <ShieldCheck className="w-4 h-4 text-purple-400" /> Institutional Model Adoption by State
           </h3>
           <div className="h-64">

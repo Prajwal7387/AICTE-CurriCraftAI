@@ -5,9 +5,10 @@
 @layer base {
   body {
     font-family: 'Inter', sans-serif;
-    background-color: #050814;
-    color: #f1f5f9;
-    overflow-x: hidden;
+    @apply bg-slate-50 text-slate-900 overflow-x-hidden transition-colors duration-200;
+  }
+  .dark body {
+    @apply bg-[#050814] text-slate-100;
   }
   h1, h2, h3, h4, h5, h6 {
     font-family: 'Outfit', sans-serif;
@@ -17,35 +18,55 @@
 /* Ambient Radial Glow & Grid Background */
 .bg-radial-grid {
   background-image: 
+    radial-gradient(ellipse at 50% 0%, rgba(2, 132, 199, 0.1) 0%, transparent 60%),
+    radial-gradient(ellipse at 80% 50%, rgba(16, 185, 129, 0.05) 0%, transparent 50%),
+    linear-gradient(to right, rgba(0, 0, 0, 0.03) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(0, 0, 0, 0.03) 1px, transparent 1px);
+  background-size: 100% 100%, 100% 100%, 40px 40px, 40px 40px;
+}
+.dark .bg-radial-grid {
+  background-image: 
     radial-gradient(ellipse at 50% 0%, rgba(2, 132, 199, 0.25) 0%, transparent 60%),
     radial-gradient(ellipse at 80% 50%, rgba(16, 185, 129, 0.15) 0%, transparent 50%),
     linear-gradient(to right, rgba(255, 255, 255, 0.03) 1px, transparent 1px),
     linear-gradient(to bottom, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
-  background-size: 100% 100%, 100% 100%, 40px 40px, 40px 40px;
 }
 
 /* Premium Glassmorphic Cards */
 .glass-panel {
-  background: rgba(15, 23, 42, 0.7);
+  background: rgba(255, 255, 255, 0.7);
   backdrop-filter: blur(16px);
   -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.05);
+}
+.dark .glass-panel {
+  background: rgba(15, 23, 42, 0.7);
   border: 1px solid rgba(255, 255, 255, 0.08);
   box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
 }
 
 .glass-card-glow {
-  background: rgba(15, 23, 42, 0.75);
+  background: rgba(255, 255, 255, 0.75);
   backdrop-filter: blur(16px);
   -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  box-shadow: 0 0 20px rgba(2, 132, 199, 0.05);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+.dark .glass-card-glow {
+  background: rgba(15, 23, 42, 0.75);
   border: 1px solid rgba(255, 255, 255, 0.1);
   box-shadow: 0 0 20px rgba(2, 132, 199, 0.1);
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .glass-card-glow:hover {
   border-color: rgba(2, 132, 199, 0.4);
-  box-shadow: 0 0 25px rgba(2, 132, 199, 0.25), 0 10px 30px rgba(0, 0, 0, 0.5);
+  box-shadow: 0 0 25px rgba(2, 132, 199, 0.15), 0 10px 30px rgba(0, 0, 0, 0.1);
   transform: translateY(-2px);
+}
+.dark .glass-card-glow:hover {
+  box-shadow: 0 0 25px rgba(2, 132, 199, 0.25), 0 10px 30px rgba(0, 0, 0, 0.5);
 }
 
 /* Custom Animated Logo Glow */

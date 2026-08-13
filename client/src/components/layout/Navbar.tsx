@@ -2,6 +2,7 @@ import React, { useState, useRef, useEffect } from 'react';
 import { useAuthStore } from '../../store/useAuthStore';
 import { LogOut, User as UserIcon, ShieldCheck, Sparkles, BookOpen, Home, Mail, Building, Landmark, CheckCircle, ChevronDown } from 'lucide-react';
 import { Link, useNavigate } from 'react-router-dom';
+import { ThemeToggle } from '../shared/ThemeToggle';
 
 export const Navbar: React.FC = () => {
   const { user, logout, login } = useAuthStore();
@@ -27,37 +28,37 @@ export const Navbar: React.FC = () => {
   }, []);
 
   return (
-    <header className="h-16 border-b border-slate-800/80 bg-slate-950/80 backdrop-blur-xl sticky top-0 z-50 px-6 flex items-center justify-between shadow-2xl">
+    <header className="h-16 border-b border-gray-200 dark:border-slate-800/80 bg-white/80 dark:bg-slate-950/80 backdrop-blur-xl sticky top-0 z-50 px-6 flex items-center justify-between shadow-sm dark:shadow-2xl transition-colors duration-200">
       {/* Brand Header with Link to Home Page (/) */}
       <div className="flex items-center space-x-4">
         <Link to="/" className="flex items-center space-x-3 group" title="Return to Main Home Page">
           <div className="w-10 h-10 rounded-xl bg-gradient-to-tr from-violet-600 via-indigo-500 to-cyan-400 p-0.5 animated-logo group-hover:scale-105 transition-transform">
-            <div className="w-full h-full bg-slate-950 rounded-[10px] flex items-center justify-center">
-              <BookOpen className="w-5 h-5 text-cyan-300" />
+            <div className="w-full h-full bg-white dark:bg-slate-950 rounded-[10px] flex items-center justify-center">
+              <BookOpen className="w-5 h-5 text-cyan-500 dark:text-cyan-300" />
             </div>
           </div>
           <div>
-            <span className="font-extrabold text-lg text-white tracking-tight flex items-center gap-1.5">
-              CurriCraft <span className="text-[10px] uppercase font-bold text-violet-300 px-2 py-0.5 rounded-full bg-violet-500/15 border border-violet-500/30">AICTE AI</span>
+            <span className="font-extrabold text-lg text-slate-900 dark:text-white tracking-tight flex items-center gap-1.5">
+              CurriCraft <span className="text-[10px] uppercase font-bold text-violet-700 dark:text-violet-300 px-2 py-0.5 rounded-full bg-violet-100 dark:bg-violet-500/15 border border-violet-200 dark:border-violet-500/30">AICTE AI</span>
             </span>
-            <p className="text-[10px] text-slate-400 font-medium">Unified Model Curriculum Portal</p>
+            <p className="text-[10px] text-slate-500 dark:text-slate-400 font-medium">Unified Model Curriculum Portal</p>
           </div>
         </Link>
 
         {/* Dedicated Home Landing Page Button */}
         <Link
           to="/"
-          className="hidden sm:flex items-center space-x-1.5 px-3 py-1.5 rounded-xl bg-slate-900/80 hover:bg-slate-800 text-xs font-semibold text-violet-300 border border-violet-500/20 transition-all hover:scale-105"
+          className="hidden sm:flex items-center space-x-1.5 px-3 py-1.5 rounded-xl bg-slate-100 dark:bg-slate-900/80 hover:bg-slate-200 dark:hover:bg-slate-800 text-xs font-semibold text-violet-700 dark:text-violet-300 border border-violet-200 dark:border-violet-500/20 transition-all hover:scale-105"
         >
-          <Home className="w-3.5 h-3.5 text-cyan-400" />
+          <Home className="w-3.5 h-3.5 text-cyan-600 dark:text-cyan-400" />
           <span>Home</span>
         </Link>
       </div>
 
       {/* Quick SIH Demo Role Switcher */}
-      <div className="hidden lg:flex items-center space-x-1.5 bg-slate-900/90 px-3 py-1.5 rounded-xl border border-slate-800 shadow-inner">
-        <span className="text-xs font-semibold text-slate-400 mr-2 flex items-center gap-1">
-          <Sparkles className="w-3.5 h-3.5 text-amber-400 animate-pulse" /> Demo Switch:
+      <div className="hidden lg:flex items-center space-x-1.5 bg-slate-50 dark:bg-slate-900/90 px-3 py-1.5 rounded-xl border border-slate-200 dark:border-slate-800 shadow-inner">
+        <span className="text-xs font-semibold text-slate-500 dark:text-slate-400 mr-2 flex items-center gap-1">
+          <Sparkles className="w-3.5 h-3.5 text-amber-500 dark:text-amber-400 animate-pulse" /> Demo Switch:
         </span>
         <button
           onClick={() => handleRoleQuickSwitch('admin@aicte-india.org')}
@@ -95,6 +96,7 @@ export const Navbar: React.FC = () => {
 
       {/* User Profile Container with Click Trigger */}
       <div className="flex items-center space-x-3 relative" ref={dropdownRef}>
+        <ThemeToggle />
         {user ? (
           <>
             {/* Interactive User Profile Trigger */}
@@ -104,9 +106,9 @@ export const Navbar: React.FC = () => {
               title="Click to view full user profile info"
             >
               <div className="text-right hidden sm:block">
-                <p className="text-sm font-bold text-white group-hover:text-cyan-300 transition-colors leading-tight flex items-center gap-1">
+                <p className="text-sm font-bold text-slate-900 dark:text-white group-hover:text-cyan-600 dark:group-hover:text-cyan-300 transition-colors leading-tight flex items-center gap-1">
                   <span>{user.name}</span>
-                  <ChevronDown className={`w-3.5 h-3.5 text-slate-400 group-hover:text-cyan-300 transition-transform ${isProfileOpen ? 'rotate-180' : ''}`} />
+                  <ChevronDown className={`w-3.5 h-3.5 text-slate-500 dark:text-slate-400 group-hover:text-cyan-600 dark:group-hover:text-cyan-300 transition-transform ${isProfileOpen ? 'rotate-180' : ''}`} />
                 </p>
                 <div className="flex items-center justify-end gap-1 text-[11px] text-violet-300 font-semibold">
                   <ShieldCheck className="w-3 h-3 text-emerald-400" />
@@ -114,8 +116,8 @@ export const Navbar: React.FC = () => {
                 </div>
               </div>
 
-              <div className="w-9 h-9 rounded-full bg-slate-900 border border-slate-700 group-hover:border-cyan-400 flex items-center justify-center text-slate-300 font-semibold shadow-md transition-all group-hover:scale-105">
-                <UserIcon className="w-4 h-4 text-violet-400 group-hover:text-cyan-300" />
+              <div className="w-9 h-9 rounded-full bg-slate-100 dark:bg-slate-900 border border-slate-200 dark:border-slate-700 group-hover:border-cyan-500 dark:group-hover:border-cyan-400 flex items-center justify-center text-slate-600 dark:text-slate-300 font-semibold shadow-sm dark:shadow-md transition-all group-hover:scale-105">
+                <UserIcon className="w-4 h-4 text-violet-600 dark:text-violet-400 group-hover:text-cyan-600 dark:group-hover:text-cyan-300" />
               </div>
             </button>
 
