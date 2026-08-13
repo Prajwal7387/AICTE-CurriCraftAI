@@ -44,6 +44,7 @@ export interface Curriculum {
   description: string;
   author: User | string;
   reviewer?: User | string;
+  reviewNotes?: string;
   modules: Module[];
   nepComplianceScore: number;
   nepDetails?: {
