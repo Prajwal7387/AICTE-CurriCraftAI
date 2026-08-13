@@ -463,21 +463,21 @@ export const CurriculumWorkspacePage: React.FC = () => {
           {activeTab === 'NEP' ? (
             <div className="space-y-3 text-xs">
               <div className="p-3 bg-white dark:bg-slate-950 rounded-xl border border-slate-200 dark:border-slate-800 text-center">
-                <p className="text-slate-600 dark:text-slate-400 text-[11px]">NEP 2020 Compliance Score</p>
-                <p className="text-3xl font-extrabold text-emerald-400 mt-1">{activeCurriculum.nepComplianceScore || 90}%</p>
-                <span className="text-[10px] text-slate-500">Rule-based AICTE Audit Passed</span>
+                <p className="text-slate-700 dark:text-slate-300 text-[11px] font-medium">NEP 2020 Compliance Score</p>
+                <p className="text-3xl font-extrabold text-emerald-600 dark:text-emerald-400 mt-1">{activeCurriculum.nepComplianceScore || 90}%</p>
+                <span className="text-[10px] text-slate-600 dark:text-slate-400 font-medium">Rule-based AICTE Audit Passed</span>
               </div>
               <div className="space-y-1.5 text-[11px]">
-                <p className="font-bold text-slate-800 dark:text-slate-300">Passed Checks:</p>
-                <ul className="space-y-1 text-slate-600 dark:text-slate-400">
+                <p className="font-bold text-slate-900 dark:text-slate-200">Passed Checks:</p>
+                <ul className="space-y-1 text-slate-700 dark:text-slate-300 font-medium">
                   <li className="flex items-center gap-1.5">
-                    <CheckCircle className="w-3.5 h-3.5 text-emerald-400" /> Total Credits (160 Credits)
+                    <CheckCircle className="w-3.5 h-3.5 text-emerald-600 dark:text-emerald-400" /> Total Credits (160 Credits)
                   </li>
                   <li className="flex items-center gap-1.5">
-                    <CheckCircle className="w-3.5 h-3.5 text-emerald-400" /> Universal Human Values (UHV)
+                    <CheckCircle className="w-3.5 h-3.5 text-emerald-600 dark:text-emerald-400" /> Universal Human Values (UHV)
                   </li>
                   <li className="flex items-center gap-1.5">
-                    <CheckCircle className="w-3.5 h-3.5 text-emerald-400" /> Mandatory Internship
+                    <CheckCircle className="w-3.5 h-3.5 text-emerald-600 dark:text-emerald-400" /> Mandatory Internship
                   </li>
                 </ul>
               </div>
@@ -486,26 +486,26 @@ export const CurriculumWorkspacePage: React.FC = () => {
             <div className="space-y-3 text-xs">
               <div className="p-3 bg-white dark:bg-slate-950 rounded-xl border border-slate-200 dark:border-slate-800 space-y-2">
                 <p className="font-semibold text-slate-900 dark:text-white">Reviewer Committee Comment</p>
-                <p className="text-slate-600 dark:text-slate-400 text-[11px]">
+                <p className="text-slate-700 dark:text-slate-300 text-[11px] italic">
                   "Please ensure the practical hours in Module 2 comply with the minimum 2-hour lab guidelines."
                 </p>
-                <span className="text-[10px] text-slate-500 block text-right">— Dr. Sunita Sharma</span>
+                <span className="text-[10px] text-slate-600 dark:text-slate-400 font-semibold block text-right">— Dr. Sunita Sharma</span>
               </div>
             </div>
           ) : (
             <div className="space-y-3 text-xs">
               <div className="p-3 bg-white dark:bg-slate-950 rounded-xl border border-slate-200 dark:border-slate-800 space-y-2">
-                <div className="flex items-center space-x-1.5 text-brand-400 font-semibold">
-                  <Zap className="w-4 h-4 text-amber-400" />
+                <div className="flex items-center space-x-1.5 text-brand-700 dark:text-brand-400 font-bold">
+                  <Zap className="w-4 h-4 text-amber-500 dark:text-amber-400" />
                   <span>Curriculum Metrics</span>
                 </div>
-                <div className="grid grid-cols-2 gap-2 pt-1 text-slate-800 dark:text-slate-300">
+                <div className="grid grid-cols-2 gap-2 pt-1 text-slate-900 dark:text-slate-100">
                   <div>
-                    <span className="text-slate-500 text-[10px] block">Total Credits</span>
+                    <span className="text-slate-600 dark:text-slate-400 text-[10px] font-semibold block">Total Credits</span>
                     <span className="font-bold">{activeCurriculum.totalCredits}</span>
                   </div>
                   <div>
-                    <span className="text-slate-500 text-[10px] block">Degree</span>
+                    <span className="text-slate-600 dark:text-slate-400 text-[10px] font-semibold block">Degree</span>
                     <span className="font-bold">{activeCurriculum.degree}</span>
                   </div>
                 </div>
